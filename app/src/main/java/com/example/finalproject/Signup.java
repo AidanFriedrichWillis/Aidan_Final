@@ -59,6 +59,13 @@ public class Signup extends AppCompatActivity {
         startActivity(intent);
 
     }
+    public void workout(View view){
+
+        Intent intent = new Intent(this, WorkoutPage.class);
+        startActivity(intent);
+
+
+    }
 
     public void signup(View view) {
 

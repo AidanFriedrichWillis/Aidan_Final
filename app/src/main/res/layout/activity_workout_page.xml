@@ -6,4 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".WorkoutPage">
 
+    <Button
+        android:id="@+id/startworkoutBTN"
+        android:layout_width="361dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="107dp"
+        android:onClick="startworkout"
+        android:text="start workout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/finishworkoutBTN"
+        android:layout_width="317dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="430dp"
+        android:onClick="finishWorkout"
+        android:text="Finish Workout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startworkoutBTN" />
+
+    <Button
+        android:id="@+id/addExersise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="142dp"
+        android:layout_marginTop="364dp"
+        android:onClick="addExerise"
+        android:text="Add Exerise"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startworkoutBTN" />
 </androidx.constraintlayout.widget.ConstraintLayout>
