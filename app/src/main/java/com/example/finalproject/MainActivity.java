@@ -2,10 +2,13 @@ package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Application;
 import android.content.Intent;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.format.Formatter;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +32,15 @@ public class MainActivity extends AppCompatActivity {
         usernameET = findViewById(R.id.usernamesET);
         passwordET = findViewById(R.id.passowrdsET);
         signupBTN = findViewById(R.id.signupBTN);
+        WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
+        String ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
+        Log.d("ipxd" ,ipAddress);
 
+    }
+    public void goworkoutPage(User user){
+        Intent intent = new Intent(this, WorkoutPage.class);
+        intent.putExtra("user",user);
+        startActivity(intent);
 
     }
 
@@ -53,13 +64,16 @@ public class MainActivity extends AppCompatActivity {
                 data[1] = password;
                 //todo: MAke it check for usernames first
 //                PutData putData = new PutData("https://homepages.shu.ac.uk/~b7020211/Login/loginlogic.php", "POST", field, data);
-                PutData putData = new PutData("http://10.65.197.168/LoginRegister/loginlogic.php", "POST", field, data);
+
+                PutData putData = new PutData("http://10.65.197.139/LoginRegister/loginlogic.php", "POST", field, data);
                 if (putData.startPut()) {
                     if (putData.onComplete()) {
                         String result = putData.getResult();
 
                         if(result.equals("correct")){
                             Toast.makeText(getApplicationContext(), "login succ", Toast.LENGTH_SHORT).show();
+                            User user = new User(username);
+                            goworkoutPage(user);
 
                         }
                         else

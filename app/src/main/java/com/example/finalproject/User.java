@@ -1,31 +1,58 @@
 package com.example.finalproject;
 
+import android.app.Application;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.Date;
 
-public class User {
+public class User implements Parcelable {
 
-  private String fullname;
    private String username;
-   private String email;
-   private ArrayList<Workout> workouts = new ArrayList<>();
+    private Workout currentWorkout = new Workout();
 
-    public String getFullname() {
-        return fullname;
+    protected User(Parcel in) {
+        username = in.readString();
     }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
+
+    public ArrayList<Workout> getWorkouts() {
+        return workouts;
+    }
+
+    public Workout getCurrentWorkout() {
+        return currentWorkout;
+    }
+
+    private ArrayList<Workout> workouts = new ArrayList<>();
+
+    public void setCurrentWorkout(Workout currentWorkout) {
+        this.currentWorkout = currentWorkout;
+    }
+
+
 
     public String getUsername() {
         return username;
     }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public User(String fullname, String username, String email) {
-        this.fullname = fullname;
+
+    public User(String username) {
         this.username = username;
-        this.email = email;
+
     }
 
     public void addWorkout(ArrayList<Exerise> exerises, Date date, int timeTaken){
@@ -36,4 +63,13 @@ public class User {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(username);
+    }
 }

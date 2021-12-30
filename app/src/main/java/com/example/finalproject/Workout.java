@@ -18,6 +18,19 @@ public class Workout {
         return exerises;
     }
 
+    public void setDate(Date date) {
+
+        this.date = date;
+    }
+
+    public void setTimetaken(int timetaken) {
+        this.timetaken = timetaken;
+    }
+
+    public void setExerises(ArrayList<Exerise> exerises) {
+        this.exerises = exerises;
+    }
+
     private Date date;
     private int timetaken;
     private ArrayList<Exerise> exerises;
@@ -26,9 +39,26 @@ public class Workout {
         this.date = date;
         this.timetaken = timetaken;
         this.exerises = exerises;
+    }
+    public Workout(ArrayList<Exerise> exerises) {
+        this.date = java.util.Calendar.getInstance().getTime();
+        this.timetaken = 0;
+        this.exerises = exerises;
+
+    }
+    public Workout() {
+        this.date = java.util.Calendar.getInstance().getTime();
+        this.timetaken = 0;
+        ArrayList<Exerise> exerises = new ArrayList<Exerise>();
+        this.exerises = exerises;
 
     }
 
+
+    public void  addExersize (Exerise exerise){
+        exerises.add(exerise);
+
+    }
 
 
 

@@ -90,7 +90,7 @@ public class Signup extends AppCompatActivity {
                 data[2] = password;
                 data[3] = email;
 
-                PutData putData = new PutData("http://10.65.197.168/LoginRegister/insertUserLogic.php", "POST", field, data);
+                PutData putData = new PutData("http://10.65.197.139/LoginRegister/insertUserLogic.php", "POST", field, data);
                 if (putData.startPut()) {
                     if (putData.onComplete()) {
                         String result = putData.getResult();
