@@ -7,46 +7,34 @@
     tools:context=".WorkoutPage">
 
     <Button
-        android:id="@+id/startworkoutBTN"
-        android:layout_width="361dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="144dp"
-        android:text="start workout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/finishworkoutBTN1"
         android:layout_width="317dp"
         android:layout_height="48dp"
-        android:layout_marginStart="33dp"
-        android:layout_marginTop="430dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="68dp"
         android:onClick="finishWorkout"
         android:text="Finish Workout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startworkoutBTN" />
+        app:layout_constraintTop_toBottomOf="@+id/addExersise1" />
 
     <Button
         android:id="@+id/addExersise1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="142dp"
-        android:layout_marginTop="364dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="184dp"
         android:onClick="addExerise"
         android:text="Add Exerise"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startworkoutBTN" />
+        app:layout_constraintTop_toBottomOf="@+id/exersizesTV1" />
 
     <TextView
         android:id="@+id/usernameTV1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginBottom="61dp"
+        android:layout_marginTop="180dp"
         android:text="nameshouldbehere"
-        app:layout_constraintBottom_toTopOf="@+id/startworkoutBTN"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,5 +46,15 @@
         android:layout_marginTop="76dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startworkoutBTN" />
+        app:layout_constraintTop_toBottomOf="@+id/usernameTV1" />
+
+    <EditText
+        android:id="@+id/workoutnameET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="WorkoutName"
+        tools:layout_editor_absoluteX="57dp"
+        tools:layout_editor_absoluteY="543dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

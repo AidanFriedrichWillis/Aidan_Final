@@ -1,30 +1,37 @@
 package com.example.finalproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import java.util.Date;
 
-public class WorkoutPage extends AppCompatActivity {
-
+public class Fragment1 extends Fragment {
     private Button addExersiseBTN;
     private TextView usernameTV;
     private TextView exersizesTV;
+    private Button finishBTn;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_workout_page);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        addExersiseBTN = findViewById(R.id.addExersise1);
-        usernameTV = findViewById(R.id.usernameTV1);
+
+        View view = inflater.inflate(R.layout.fragment1_layout,container,false);
+        addExersiseBTN = view.findViewById(R.id.addExersise1);
+        usernameTV = view.findViewById(R.id.usernameTV1);
         usernameTV.setText(User.getUsername());
-        exersizesTV = findViewById(R.id.exersizesTV1);
+        exersizesTV = view.findViewById(R.id.exersizesTV1);
+        finishBTn = view.findViewById(R.id.finishAddBtn);
         String s = "";
         exersizesTV.setText(s);
         if(!User.getCurrentWorkout().getExerises().isEmpty()){
@@ -35,25 +42,16 @@ public class WorkoutPage extends AppCompatActivity {
         }
 
 
-
-
-
-    }
-
-
-    public void addExerise(View view){
-
-        Intent intent = new Intent(getApplicationContext(),AddExersize.class);
-        startActivity(intent);
+        return  view;
 
 
     }
-
     public void finishWorkout(View view){
         Date d= java.util.Calendar.getInstance().getTime();
         User.addWorkout(User.getCurrentWorkout().getExerises(),d);
         Workout workout = new Workout();
         User.setCurrentWorkout(workout);
+        Toast.makeText(getContext(), "SignUpSucc", Toast.LENGTH_SHORT).show();
     }
 
 }

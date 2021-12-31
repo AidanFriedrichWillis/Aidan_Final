@@ -37,9 +37,8 @@ public class MainActivity extends AppCompatActivity {
         Log.d("ipxd" ,ipAddress);
 
     }
-    public void goworkoutPage(User user){
-        Intent intent = new Intent(this, WorkoutPage.class);
-        intent.putExtra("user",user);
+    public void goworkoutPage(){
+        Intent intent = new Intent(this, MainPage.class);
         startActivity(intent);
 
     }
@@ -72,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
 
                         if(result.equals("correct")){
                             Toast.makeText(getApplicationContext(), "login succ", Toast.LENGTH_SHORT).show();
-                            User user = new User(username);
-                            goworkoutPage(user);
+                            User.setUsername(username);
+                            goworkoutPage();
 
                         }
                         else

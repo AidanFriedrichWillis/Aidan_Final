@@ -7,69 +7,48 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class User implements Parcelable {
+public final class User {
 
-   private String username;
-    private Workout currentWorkout = new Workout();
+    private static String username;
+    private static Workout currentWorkout = new Workout();
+    private static ArrayList<Workout> workouts = new ArrayList<>();
 
-    protected User(Parcel in) {
-        username = in.readString();
-    }
 
-    public static final Creator<User> CREATOR = new Creator<User>() {
-        @Override
-        public User createFromParcel(Parcel in) {
-            return new User(in);
-        }
-
-        @Override
-        public User[] newArray(int size) {
-            return new User[size];
-        }
-    };
-
-    public ArrayList<Workout> getWorkouts() {
+    public static ArrayList<Workout> getWorkouts() {
         return workouts;
     }
 
-    public Workout getCurrentWorkout() {
+    public static Workout getCurrentWorkout() {
         return currentWorkout;
     }
 
-    private ArrayList<Workout> workouts = new ArrayList<>();
 
-    public void setCurrentWorkout(Workout currentWorkout) {
-        this.currentWorkout = currentWorkout;
+    public static void setCurrentWorkout(Workout cw) {
+        currentWorkout = cw;
     }
 
 
 
-    public String getUsername() {
+    public static String getUsername() {
         return username;
     }
 
 
 
-    public User(String username) {
-        this.username = username;
+    private User(String u) {
+        username = username;
+
+    }
+    public static void setUsername(String u){
+        username = u;
 
     }
 
-    public void addWorkout(ArrayList<Exerise> exerises, Date date, int timeTaken){
+    public static void addWorkout(ArrayList<Exerise> exerises, Date date){
 
-            Workout workout = new Workout(date,timeTaken,exerises);
+            Workout workout = new Workout(date,exerises);
             workouts.add(workout);
 
     }
 
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(username);
-    }
 }

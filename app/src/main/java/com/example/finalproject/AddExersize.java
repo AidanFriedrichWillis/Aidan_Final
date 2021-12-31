@@ -19,13 +19,11 @@ public class AddExersize extends AppCompatActivity {
     private EditText repsET;
     private EditText setsET;
     private Button addexersieBTN;
-    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_exersize);
-        user = getIntent().getParcelableExtra("user");
         nameET = findViewById(R.id.exersizeNameET);
         repsET = findViewById(R.id.repsET);
         setsET = findViewById(R.id.setsET);
@@ -35,18 +33,14 @@ public class AddExersize extends AppCompatActivity {
     public void add(View view){
 
         Exerise exerise = new Exerise(String.valueOf(nameET.getText()),Integer.valueOf(String.valueOf(repsET.getText())),Integer.valueOf(String.valueOf(setsET.getText())));
-        ArrayList<Exerise> exerises = new ArrayList<Exerise>();
-        exerises.add(exerise);
-        Workout workout = new Workout(exerises);
-        workout.addExersize(exerise);
-        user.setCurrentWorkout(workout);
-//        tv.setText(exerise.getName()+String.valueOf(exerise.getReps())+ String.valueOf(exerise.getSets()));
-        workoutPage(user);
+
+        User.getCurrentWorkout().addExersize(exerise);
+
+        workoutPage();
     }
 
-    public void workoutPage(User user){
-        Intent intent = new Intent(getApplicationContext(),WorkoutPage.class);
-        intent.putExtra("user", user);
+    public void workoutPage(){
+        Intent intent = new Intent(getApplicationContext(),MainPage.class);
         startActivity(intent);
 
     }

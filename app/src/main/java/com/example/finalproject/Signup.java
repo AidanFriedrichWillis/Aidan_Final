@@ -66,6 +66,14 @@ public class Signup extends AppCompatActivity {
 
 
     }
+    public void tab(View view){
+        Intent intent = new Intent(this, MainPage.class);
+        startActivity(intent);
+
+
+
+    }
+
 
     public void signup(View view) {
 
