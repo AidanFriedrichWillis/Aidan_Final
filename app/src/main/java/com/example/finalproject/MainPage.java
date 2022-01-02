@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.finalproject.ui.main.SectionsPagerAdapter;
 import com.example.finalproject.databinding.ActivityMainPageBinding;
@@ -59,6 +60,18 @@ public class MainPage extends AppCompatActivity {
 
         Intent intent = new Intent(getApplicationContext(),AddExersize.class);
         startActivity(intent);
+
+
+    }
+    public void finishWorkout(View view){
+            EditText editText = view.findViewById(R.id.workoutnameET);
+            Log.d("lmao",String.valueOf(editText.getText()));
+//            Date d= java.util.Calendar.getInstance().getTime();
+//                User.addWorkout(User.getCurrentWorkout().getExerises(),d);
+//                Workout workout = new Workout(String.valueOf(editText.getText()));
+//                User.setCurrentWorkout(workout);
+//        Toast.makeText(getApplicationContext(), editText.getText(), Toast.LENGTH_LONG).show();
+
 
 
     }

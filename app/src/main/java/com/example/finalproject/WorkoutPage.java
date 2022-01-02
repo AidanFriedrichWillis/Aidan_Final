@@ -49,11 +49,5 @@ public class WorkoutPage extends AppCompatActivity {
 
     }
 
-    public void finishWorkout(View view){
-        Date d= java.util.Calendar.getInstance().getTime();
-        User.addWorkout(User.getCurrentWorkout().getExerises(),d);
-        Workout workout = new Workout();
-        User.setCurrentWorkout(workout);
-    }
 
 }

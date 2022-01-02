@@ -44,9 +44,9 @@ public final class User {
 
     }
 
-    public static void addWorkout(ArrayList<Exerise> exerises, Date date){
+    public static void addWorkout(ArrayList<Exerise> exerises, Date date, String n){
 
-            Workout workout = new Workout(date,exerises);
+            Workout workout = new Workout(date,exerises,n);
             workouts.add(workout);
 
     }

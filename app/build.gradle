@@ -41,6 +41,8 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
     implementation group: 'at.favre.lib', name: 'bcrypt', version: '0.9.0'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
 
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

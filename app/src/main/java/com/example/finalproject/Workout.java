@@ -19,6 +19,10 @@ public class Workout {
         this.date = date;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private String name = "";
     public void setExerises(ArrayList<Exerise> exerises) {
         this.exerises = exerises;
@@ -32,7 +36,8 @@ public class Workout {
         name = n;
     }
 
-    public Workout(Date date, ArrayList<Exerise> exerises) {
+    public Workout(Date date, ArrayList<Exerise> exerises, String n) {
+       this.name = n;
         this.date = date;
         this.exerises = exerises;
     }
@@ -47,6 +52,14 @@ public class Workout {
         this.exerises = exerises;
 
     }
+    public Workout(String n) {
+        name = n;
+        this.date = java.util.Calendar.getInstance().getTime();
+        ArrayList<Exerise> exerises = new ArrayList<Exerise>();
+        this.exerises = exerises;
+
+    }
+
 
 
     public void  addExersize (Exerise exerise){

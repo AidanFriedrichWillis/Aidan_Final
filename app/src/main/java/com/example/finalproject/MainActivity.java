@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 //todo: MAke it check for usernames first
 //                PutData putData = new PutData("https://homepages.shu.ac.uk/~b7020211/Login/loginlogic.php", "POST", field, data);
 
-                PutData putData = new PutData("http://10.65.197.139/LoginRegister/loginlogic.php", "POST", field, data);
+                PutData putData = new PutData("http://10.65.196.30/LoginRegister/loginlogic.php", "POST", field, data);
                 if (putData.startPut()) {
                     if (putData.onComplete()) {
                         String result = putData.getResult();
