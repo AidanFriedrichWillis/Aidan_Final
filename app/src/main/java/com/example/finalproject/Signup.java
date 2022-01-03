@@ -82,10 +82,6 @@ public class Signup extends AppCompatActivity {
         username = String.valueOf(usernameET.getText());
         email = String.valueOf(emailET.getText());
         password = String.valueOf(passwordET.getText());
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
                 String[] field = new String[4];
                 field[0] = "fullname";
                 field[1] = "username";
@@ -98,25 +94,21 @@ public class Signup extends AppCompatActivity {
                 data[2] = password;
                 data[3] = email;
 
-                PutData putData = new PutData("http://10.65.197.139/LoginRegister/insertUserLogic.php", "POST", field, data);
-                if (putData.startPut()) {
-                    if (putData.onComplete()) {
-                        String result = putData.getResult();
-                        if(result.equals("Account created Succsessfully")){
-                            Toast.makeText(getApplicationContext(), "SignUpSucc", Toast.LENGTH_SHORT).show();
-                            gotologin();
-                        }
-                        else
-                        {
-                            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
-                            Log.d("returnmess",result);
+        Network network = new Network(field,data,"insertUserLogic");
 
-                        }
-                    }
-                }
-                //End Write and Read data with URL
-            }
-        });
+
+
+        if(network.getResult().equals("Account created Succsessfully")){
+            Toast.makeText(getApplicationContext(), "SignUpSucc", Toast.LENGTH_SHORT).show();
+            gotologin();
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(), network.getResult(), Toast.LENGTH_LONG).show();
+            Log.d("returnmess",network.getResult());
+
+        }
+
 
 
 

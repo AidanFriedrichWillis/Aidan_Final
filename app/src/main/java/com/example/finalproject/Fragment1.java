@@ -1,6 +1,7 @@
 package com.example.finalproject;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Fragment1 extends Fragment implements View.OnClickListener {
@@ -82,7 +86,27 @@ public class Fragment1 extends Fragment implements View.OnClickListener {
                 User.addWorkout(User.getCurrentWorkout().getExerises(),d,workoutnameET.getText().toString());
                 Workout workout = new Workout();
                 User.setCurrentWorkout(workout);
-                Toast.makeText(getContext(), "Added: " + workoutnameET.getText().toString() , Toast.LENGTH_SHORT).show();
+                Gson gson = new Gson();
+
+                String name = User.getUsername();
+                ArrayList<Workout> workouts = User.getWorkouts();
+
+                String s = gson.toJson(workouts);
+
+                String[] field = new String[2];
+                field[0] = "workouts";
+                field[1] = "username";
+                String[] data = new String[2];
+                data[0] = s;
+                data[1] = User.getUsername();
+
+                Network network = new Network(field, data, "addWorkouts");
+
+
+
+
+                Toast.makeText(getContext(), "Added: " + network.getResult() , Toast.LENGTH_SHORT).show();
+                Log.d("lmaoxd", s);
 
 
 

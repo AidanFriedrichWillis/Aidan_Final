@@ -63,18 +63,18 @@ public class MainPage extends AppCompatActivity {
 
 
     }
-    public void finishWorkout(View view){
-            EditText editText = view.findViewById(R.id.workoutnameET);
-            Log.d("lmao",String.valueOf(editText.getText()));
-//            Date d= java.util.Calendar.getInstance().getTime();
-//                User.addWorkout(User.getCurrentWorkout().getExerises(),d);
-//                Workout workout = new Workout(String.valueOf(editText.getText()));
-//                User.setCurrentWorkout(workout);
-//        Toast.makeText(getApplicationContext(), editText.getText(), Toast.LENGTH_LONG).show();
-
-
-
-    }
+//    public void finishWorkout(View view){
+//            EditText editText = view.findViewById(R.id.workoutnameET);
+//            Log.d("lmao",String.valueOf(editText.getText()));
+////            Date d= java.util.Calendar.getInstance().getTime();
+////                User.addWorkout(User.getCurrentWorkout().getExerises(),d);
+////                Workout workout = new Workout(String.valueOf(editText.getText()));
+////                User.setCurrentWorkout(workout);
+////        Toast.makeText(getApplicationContext(), editText.getText(), Toast.LENGTH_LONG).show();
+//
+//
+//
+//    }
 
 
 }

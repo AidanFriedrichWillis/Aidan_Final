@@ -48,46 +48,28 @@ public class MainActivity extends AppCompatActivity {
         String username,password;
         username = String.valueOf(usernameET.getText());
         password = String.valueOf(passwordET.getText());
+        String[] field = new String[2];
+        field[0] = "username";
+        field[1] = "password";
+        //Creating array for data
+        String[] data = new String[2];
+        data[0] = username;
+        data[1] = password;
 
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-
-                String[] field = new String[2];
-                field[0] = "username";
-                field[1] = "password";
-                //Creating array for data
-                String[] data = new String[2];
-                data[0] = username;
-                data[1] = password;
-                //todo: MAke it check for usernames first
-//                PutData putData = new PutData("https://homepages.shu.ac.uk/~b7020211/Login/loginlogic.php", "POST", field, data);
-
-                PutData putData = new PutData("http://10.65.196.30/LoginRegister/loginlogic.php", "POST", field, data);
-                if (putData.startPut()) {
-                    if (putData.onComplete()) {
-                        String result = putData.getResult();
-
-                        if(result.equals("correct")){
-                            Toast.makeText(getApplicationContext(), "login succ", Toast.LENGTH_SHORT).show();
-                            User.setUsername(username);
-                            goworkoutPage();
-
-                        }
-                        else
-                        {
-                            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
-                            Log.d("returnmess",result);
-
-                        }
-                    }
-                }
-                //End Write and Read data with URL
-            }
-        });
+        Network network = new Network(field,data,"loginLogic");
 
 
+        if (network.getResult().startsWith("c")) {
+            Toast.makeText(getApplicationContext(), "login succ", Toast.LENGTH_SHORT).show();
+            Log.d("succmess", network.getResult());
+            User.setUsername(username);
+            goworkoutPage();
+
+        } else {
+            Toast.makeText(getApplicationContext(), network.getResult(), Toast.LENGTH_LONG).show();
+            Log.d("returnmess", network.getResult());
+
+        }
 
 
     }

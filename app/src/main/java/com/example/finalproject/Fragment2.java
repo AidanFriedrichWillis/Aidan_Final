@@ -1,5 +1,6 @@
 package com.example.finalproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +44,7 @@ public class Fragment2 extends Fragment {
     }
 
     public void refresh(){
-
+        linearLayout.removeAllViews();
         if(!User.getWorkouts().isEmpty()){
             for(int i = 0; i < User.getWorkouts().size(); i++){
 
@@ -51,6 +52,7 @@ public class Fragment2 extends Fragment {
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
                 button.setText(User.getWorkouts().get(i).getName());
                 button.setId(i);
+                button.setOnClickListener(getOnClick(i));
 
                 linearLayout.addView(button, layoutParams);
 
@@ -64,8 +66,16 @@ public class Fragment2 extends Fragment {
 
     }
 
-    public void addBTN(View view){
+    private View.OnClickListener getOnClick(final int i){
 
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ExeriszeInfo.class);
+                intent.putExtra("index",i);
+                startActivity(intent);
+            }
+        };
 
 
     }
