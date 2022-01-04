@@ -3,11 +3,18 @@ package com.example.finalproject;
 import android.app.Application;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 public final class User {
 
@@ -59,7 +66,7 @@ public final class User {
 
     }
 
-    public static void addWorkout(ArrayList<Exerise> exerises, Date date, String n){
+    public static void addWorkout(ArrayList<Exerise> exerises, String date, String n){
 
             Workout workout = new Workout(date,exerises,n);
             workouts.add(workout);
@@ -71,5 +78,32 @@ public final class User {
         return new User(User.getUsername(),User.getWorkouts());
 
     }
+
+    public static ArrayList<Workout> fromJson(String jsonST) throws JSONException {
+
+
+
+
+
+
+
+        //        JSONParser jsonParser = new JSONParser();
+//
+//        Object o = jsonParser.parse(jsonST);
+//
+//        JSONArray workoutList = (JSONArray) o;
+
+       // Log.d("ree", workoutList.toString());
+
+
+
+
+
+
+        return workouts;
+
+    }
+
+
 
 }

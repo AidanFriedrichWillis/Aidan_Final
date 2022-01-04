@@ -32,7 +32,7 @@ import java.util.Enumeration;
         this.field = field;
         this.data = data;
         this.type = type;
-        PutData putData = new PutData("http://10.65.196.30/LoginRegister/"+type+".php", "POST", field, data);
+        PutData putData = new PutData("http://10.65.197.65/LoginRegister/"+type+".php", "POST", field, data);
         if (putData.startPut()) {
             if (putData.onComplete()) {
                 result=  putData.getResult();

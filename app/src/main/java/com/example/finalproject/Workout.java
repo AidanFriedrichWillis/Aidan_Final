@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Workout {
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -16,7 +16,7 @@ public class Workout {
 
     public void setDate(Date date) {
 
-        this.date = date;
+        this.date = date.toString();
     }
 
     public String getName() {
@@ -28,33 +28,40 @@ public class Workout {
         this.exerises = exerises;
     }
 
-    private Date date;
-    private ArrayList<Exerise> exerises;
+
+    private String date;
+    private ArrayList<Exerise> exerises = new ArrayList<>();
 
 
     public void setName(String n){
         name = n;
     }
 
-    public Workout(Date date, ArrayList<Exerise> exerises, String n) {
+    public Workout(String date, ArrayList<Exerise> exerises, String n) {
        this.name = n;
-        this.date = date;
+        this.date = date.toString();
         this.exerises = exerises;
     }
+    public Workout(String n, String date) {
+        this.name = n;
+        this.date = date.toString();
+        this.exerises = exerises;
+    }
+
     public Workout(ArrayList<Exerise> exerises) {
-        this.date = java.util.Calendar.getInstance().getTime();
+        this.date = java.util.Calendar.getInstance().getTime().toString();
         this.exerises = exerises;
 
     }
     public Workout() {
-        this.date = java.util.Calendar.getInstance().getTime();
+        this.date = java.util.Calendar.getInstance().getTime().toString();
         ArrayList<Exerise> exerises = new ArrayList<Exerise>();
         this.exerises = exerises;
 
     }
     public Workout(String n) {
         name = n;
-        this.date = java.util.Calendar.getInstance().getTime();
+        this.date = java.util.Calendar.getInstance().getTime().toString();
         ArrayList<Exerise> exerises = new ArrayList<Exerise>();
         this.exerises = exerises;
 

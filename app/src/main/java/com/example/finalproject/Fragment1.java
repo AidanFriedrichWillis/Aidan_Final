@@ -82,7 +82,7 @@ public class Fragment1 extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.finishworkoutBTN1:
 
-                Date d= java.util.Calendar.getInstance().getTime();
+                String d= java.util.Calendar.getInstance().getTime().toString();
                 User.addWorkout(User.getCurrentWorkout().getExerises(),d,workoutnameET.getText().toString());
                 Workout workout = new Workout();
                 User.setCurrentWorkout(workout);
@@ -107,6 +107,8 @@ public class Fragment1 extends Fragment implements View.OnClickListener {
 
                 Toast.makeText(getContext(), "Added: " + network.getResult() , Toast.LENGTH_SHORT).show();
                 Log.d("lmaoxd", s);
+                Log.d("lmaoxd2", network.getResult());
+
 
 
 
