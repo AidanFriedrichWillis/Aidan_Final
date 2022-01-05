@@ -66,6 +66,51 @@ public final class User {
 
     }
 
+    public static int pb(String e, int month, int year){
+        int pb = 0;
+
+        for(int i = 0; i< workouts.size(); i++){
+            Date d = new Date(workouts.get(i).getDate());
+            int m = d.getMonth();
+            for(int j = 0; j < workouts.get(i).getExerises().size(); j++) {
+                Exerise exerise = workouts.get(i).getExerises().get(j);
+                if(d.getMonth() == month){
+                if(workouts.get(i).getExerises().get(j).getName().equals(e) && workouts.get(i).getExerises().get(j).getWeight() > pb && d.getYear() == year){
+                    pb = workouts.get(i).getExerises().get(j).getWeight();
+                }
+
+
+            }
+            }
+
+
+        }
+
+
+        return pb;
+    }
+
+    public static ArrayList<String> allENames(){
+
+        ArrayList<String> enames = new ArrayList<>();
+
+        for(int i = 0; i< workouts.size(); i++){
+
+            for(int j = 0; j < workouts.get(i).getExerises().size(); j++) {
+
+                if(!enames.contains(workouts.get(i).getExerises().get(j).getName())){
+                    enames.add(workouts.get(i).getExerises().get(j).getName());
+                }
+
+            }
+
+
+        }
+
+        return enames;
+
+    }
+
     public static void addWorkout(ArrayList<Exerise> exerises, String date, String n){
 
             Workout workout = new Workout(date,exerises,n);

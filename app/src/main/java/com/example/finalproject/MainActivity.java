@@ -96,14 +96,14 @@ public class MainActivity extends AppCompatActivity {
                         String name;
                         int reps;
                         int sets;
-
+                        int weight;
                         JSONObject tempo2 = new JSONObject(tempa.get(j).toString());
 
                         name = (String) tempo2.get("name");
                         reps = (int) tempo2.get("reps");
                         sets = (int) tempo2.get("sets");
-
-                        Exerise e = new Exerise(name,reps,sets);
+                        weight = (int) tempo2.get("weight");
+                        Exerise e = new Exerise(name,reps,sets,weight);
                         w.addExersize(e);
 
                     }

@@ -19,6 +19,7 @@ public class AddExersize extends AppCompatActivity {
     private EditText repsET;
     private EditText setsET;
     private Button addexersieBTN;
+    private EditText weightET;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +29,12 @@ public class AddExersize extends AppCompatActivity {
         repsET = findViewById(R.id.repsET);
         setsET = findViewById(R.id.setsET);
         addexersieBTN = findViewById(R.id.finishAddBtn);
+        weightET = findViewById(R.id.weightET);
     }
 
     public void add(View view){
 
-        Exerise exerise = new Exerise(String.valueOf(nameET.getText()),Integer.valueOf(String.valueOf(repsET.getText())),Integer.valueOf(String.valueOf(setsET.getText())));
+        Exerise exerise = new Exerise(String.valueOf(nameET.getText()),Integer.valueOf(String.valueOf(repsET.getText())),Integer.valueOf(String.valueOf(setsET.getText())),Integer.valueOf(String.valueOf(weightET.getText())));
 
         User.getCurrentWorkout().addExersize(exerise);
 
