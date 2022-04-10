@@ -4,17 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.vishnusivadas.advanced_httpurlconnection.PutData;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
+import java.util.HashMap;
 
 public class Signup extends AppCompatActivity {
 
@@ -22,9 +20,9 @@ public class Signup extends AppCompatActivity {
     private EditText usernameET;
     private EditText passwordET;
     private EditText emailET;
-
-    Button signupBTN;
-
+        private String res;
+        Button signupBTN;
+    private HashMap<String,String> postData = new HashMap<String,String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +73,7 @@ public class Signup extends AppCompatActivity {
     }
 
 
+
     public void signup(View view) {
 
         String fullname, username, password, email;
@@ -82,35 +81,24 @@ public class Signup extends AppCompatActivity {
         username = String.valueOf(usernameET.getText());
         email = String.valueOf(emailET.getText());
         password = String.valueOf(passwordET.getText());
-                String[] field = new String[4];
-                field[0] = "fullname";
-                field[1] = "username";
-                field[2] = "password";
-                field[3] = "email";
-                //Creating array for data
-                String[] data = new String[4];
-                data[0] = fullname;
-                data[1] = username;
-                data[2] = password;
-                data[3] = email;
 
-        Network network = new Network(field,data,"insertUserLogic");
+        try {
+            postData.put("fullname",fullname);
+            postData.put("username",username);
+            postData.put("email",email);
+            postData.put("password",password);
 
-
-
-        if(network.getResult().equals("Account created Succsessfully")){
-            Toast.makeText(getApplicationContext(), "SignUpSucc", Toast.LENGTH_SHORT).show();
-            gotologin();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        else
-        {
-            Toast.makeText(getApplicationContext(), network.getResult(), Toast.LENGTH_LONG).show();
-            Log.d("returnmess",network.getResult());
+        RESTFull_services_user rest = new RESTFull_services_user("user");
+        res = rest.postRequest(postData);
+        try {
+            Toast.makeText(this,res, Toast.LENGTH_SHORT).show();
+        }catch(Exception e){
+            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 
         }
-
-
-
 
 
     }
