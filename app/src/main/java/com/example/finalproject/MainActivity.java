@@ -2,33 +2,22 @@ package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Application;
 import android.content.Intent;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 
-
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-
-import at.favre.lib.crypto.bcrypt.BCrypt;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,10 +29,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
+
         setContentView(R.layout.activity_main);
 
         usernameET = findViewById(R.id.usernamesET);
-        passwordET = findViewById(R.id.passowrdsET);
+        passwordET = findViewById(R.id.passwordET);
         signupBTN = findViewById(R.id.signupBTN);
         WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
         String ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
@@ -54,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainPage.class);
         startActivity(intent);
 
+    }
+    public void signUpPage(){
+        Intent intent = new Intent(this, Signup.class);
+        startActivity(intent);
+    }
+
+    public void goSignUp(View v){
+        signUpPage();
     }
 
     public void signin(View view) {

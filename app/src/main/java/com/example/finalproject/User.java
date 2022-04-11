@@ -12,6 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
@@ -117,11 +118,9 @@ public final class User {
     }
 
     public static ArrayList<Workout> fromJson(String jsonST) throws JSONException {
-
-
+        ArrayList<Workout> workouts = new ArrayList<>();
 
         if(jsonST != "") {
-
 
             JSONArray jsonArray = new JSONArray(jsonST);
 
@@ -156,9 +155,6 @@ public final class User {
             }
 
         }
-
-
-
 
 
         return workouts;

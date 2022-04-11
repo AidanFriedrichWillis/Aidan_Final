@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -23,7 +26,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Fragment1 extends Fragment implements View.OnClickListener {
+public class Fragment1 extends Fragment  implements View.OnClickListener {
     private Button addExersiseBTN;
     private TextView usernameTV;
     private TextView exersizesTV;
@@ -34,8 +37,9 @@ public class Fragment1 extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
         View view = inflater.inflate(R.layout.fragment1_layout,container,false);
+
+
         addExersiseBTN = view.findViewById(R.id.addExersise1);
         usernameTV = view.findViewById(R.id.usernameTV1);
         usernameTV.setText(User.getUsername());
