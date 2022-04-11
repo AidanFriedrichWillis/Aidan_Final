@@ -4,26 +4,19 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-public class RESTFull_services_workout implements Services {
+public class RESTFull_services_workout extends Services {
 
-
-    @Override
-    public String getRequest(String data) {
-        return null;
+    public RESTFull_services_workout(String route){
+        this.route = route;
     }
 
-    @Override
-    public String putRequest() {
-        return null;
+
+    public boolean putRequest() {
+        return false;
     }
 
-    @Override
-    public String postRequest(HashMap data) {
-        return null;
-    }
 
-    @Override
-    public String deleteRequest() {
-        return null;
+    public boolean deleteRequest() {
+        return false;
     }
 }

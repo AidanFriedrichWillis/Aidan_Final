@@ -19,12 +19,14 @@ public class NetworkThread extends Thread{
 
     private String route;
     private String requestType;
-    private HashMap data;
+    private JSONObject data;
     private String resultData;
     private String jsondtring = "";
     private int responseCode;
     private String responseMess;
-    public NetworkThread(String route, String requestType, HashMap data){
+    private boolean isError;
+
+    public NetworkThread(String route, String requestType, JSONObject data){
         this.route = route;
         this.requestType = requestType;
         this.data = data;
@@ -45,18 +47,18 @@ public class NetworkThread extends Thread{
             URL url = new URL("http://10.65.199.35/api/" + route);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod(this.requestType);
-            httpURLConnection.setDoOutput(true);
+
             httpURLConnection.setDoInput(true);
-            httpURLConnection.setRequestProperty("Authorization", "222");
-            OutputStream outputStream = httpURLConnection.getOutputStream();
-            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, UTF8));
-            data.forEach((key,value) -> {
-                jsondtring = jsondtring + key + "=" + value + "&";
-            });
-            bufferedWriter.write(jsondtring);
-            bufferedWriter.flush();
-            bufferedWriter.close();
-            outputStream.close();
+            httpURLConnection.setRequestProperty("Authorization", Token.getToken());
+            if(requestType == "POST"){
+                httpURLConnection.setDoOutput(true);
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, UTF8));
+                bufferedWriter.write("data="+data.toString());
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+            }
             httpURLConnection.connect();
             responseCode = httpURLConnection.getResponseCode();
             responseMess = httpURLConnection.getResponseMessage();
@@ -72,6 +74,7 @@ public class NetworkThread extends Thread{
             httpURLConnection.disconnect();
             resultData = result.toString();
         } catch (IOException e) {
+            isError = true;
             resultData = String.valueOf(responseCode) + responseMess;
         }
     }
@@ -82,5 +85,9 @@ public class NetworkThread extends Thread{
 
     public int getResponseCode() {
         return responseCode;
+    }
+
+    public boolean isError() {
+        return isError;
     }
 }

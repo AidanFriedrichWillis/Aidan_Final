@@ -67,8 +67,6 @@ public class Workout {
 
     }
 
-
-
     public void  addExersize (Exerise exerise){
         exerises.add(exerise);
 

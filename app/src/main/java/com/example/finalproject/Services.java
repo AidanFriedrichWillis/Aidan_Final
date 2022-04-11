@@ -2,13 +2,47 @@ package com.example.finalproject;
 
 import org.json.JSONObject;
 
-import java.util.HashMap;
+public abstract class Services {
+     protected String route;
+     protected String result;
+     protected NetworkThread request;
+     private JSONObject postData = null;
 
-public interface Services {
+     abstract boolean putRequest();
 
-    String getRequest(String url);
-    String putRequest();
-    String postRequest(HashMap postData);
-    String deleteRequest();
+
+      boolean postRequest(JSONObject postData){
+           this.postData = postData;
+           return startRequest("POST");
+      };
+
+
+     abstract boolean deleteRequest() ;
+
+     public boolean getRequest() {
+          return startRequest("GET");
+     }
+
+     private boolean startRequest(String method){
+          request = new NetworkThread(route,method,postData);
+          request.start();
+          if(request.finish()){
+               result = request.getResultData();
+               if(!request.isError()){
+                    return true;
+               }
+               else{
+                    return false;
+               }
+          }
+          else return false;
+     }
+
+     public String getResult() {
+          return result;
+     }
+
+
+
 
 }

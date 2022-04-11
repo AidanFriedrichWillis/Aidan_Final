@@ -92,9 +92,14 @@ public class Signup extends AppCompatActivity {
             e.printStackTrace();
         }
         RESTFull_services_user rest = new RESTFull_services_user("user");
-        res = rest.postRequest(postData);
+
         try {
-            Toast.makeText(this,res, Toast.LENGTH_SHORT).show();
+            if(rest.postRequest(new JSONObject(postData))){
+                gotologin();
+            }
+            else{
+                Toast.makeText(App.getAppContext(), rest.getResult(), Toast.LENGTH_SHORT).show();
+            }
         }catch(Exception e){
             Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 

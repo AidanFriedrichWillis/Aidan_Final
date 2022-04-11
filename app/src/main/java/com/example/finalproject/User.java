@@ -27,7 +27,6 @@ public final class User {
 
     private static ArrayList<Workout> workouts = new ArrayList<>();
 
-
     public static ArrayList<Workout> getWorkouts() {
         return workouts;
     }
@@ -36,18 +35,13 @@ public final class User {
         return currentWorkout;
     }
 
-
     public static void setCurrentWorkout(Workout cw) {
         currentWorkout = cw;
     }
 
-
-
     public static String getUsername() {
         return username;
     }
-
-
 
     private User(String u) {
         username = username;
@@ -56,7 +50,6 @@ public final class User {
     public User(String username, ArrayList<Workout> workouts){
         this.username = username;
         this.workouts = workouts;
-
 
     }
 
@@ -104,7 +97,6 @@ public final class User {
 
             }
 
-
         }
 
         return enames;
@@ -128,18 +120,42 @@ public final class User {
 
 
 
+        if(jsonST != "") {
 
 
+            JSONArray jsonArray = new JSONArray(jsonST);
+
+            for(int i = 0;i<jsonArray.length();i++){
+
+                JSONObject tempo = new JSONObject(jsonArray.get(i).toString());
+
+                Workout w = new Workout(tempo.get("name").toString(),tempo.get("date").toString());
+
+                JSONArray tempa = new JSONArray(tempo.getJSONArray("exersizes").toString());
+
+                for(int j = 0; j < tempa.length();j++){
+
+                    String name;
+                    int reps;
+                    int sets;
+                    int weight;
+                    JSONObject tempo2 = new JSONObject(tempa.get(j).toString());
+
+                    name = (String) tempo2.get("name");
+                    reps = (int) tempo2.get("reps");
+                    sets = (int) tempo2.get("sets");
+                    weight = (int) tempo2.get("weight");
+                    Exerise e = new Exerise(name,reps,sets,weight);
+                    w.addExersize(e);
+
+                }
+
+                workouts.add(w);
 
 
-        //        JSONParser jsonParser = new JSONParser();
-//
-//        Object o = jsonParser.parse(jsonST);
-//
-//        JSONArray workoutList = (JSONArray) o;
+            }
 
-       // Log.d("ree", workoutList.toString());
-
+        }
 
 
 

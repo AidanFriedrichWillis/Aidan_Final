@@ -18,6 +18,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.gson.Gson;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -81,33 +83,29 @@ public class Fragment1 extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.finishworkoutBTN1:
-
-                String d= java.util.Calendar.getInstance().getTime().toString();
-                User.addWorkout(User.getCurrentWorkout().getExerises(),d,workoutnameET.getText().toString());
-                Workout workout = new Workout();
-                User.setCurrentWorkout(workout);
                 Gson gson = new Gson();
+                User.getCurrentWorkout().setName(String.valueOf(workoutnameET.getText()));
+                String s = gson.toJson(User.getCurrentWorkout());
+                RESTFull_services_workout rest = new RESTFull_services_workout("workout");
+                Log.e("URLLMAO",s);
+                try{
+                    if(rest.postRequest(new JSONObject(s))){
+                        Toast.makeText(App.getAppContext(), rest.getResult(), Toast.LENGTH_SHORT).show();
 
-                String name = User.getUsername();
-                ArrayList<Workout> workouts = User.getWorkouts();
+                    }
+                    else {
+                        Toast.makeText(App.getAppContext(), rest.getResult(), Toast.LENGTH_SHORT).show();
 
-                String s = gson.toJson(workouts);
-
-                String[] field = new String[2];
-                field[0] = "workouts";
-                field[1] = "username";
-                String[] data = new String[2];
-                data[0] = s;
-                data[1] = User.getUsername();
-
-                Network network = new Network(field, data, "addWorkouts");
+                    }
+                }
+                catch (Exception e){
+                    Toast.makeText(App.getAppContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                }
 
 
 
 
-                Toast.makeText(getContext(), "Added: " + network.getResult() , Toast.LENGTH_SHORT).show();
-                Log.d("lmaoxd", s);
-                Log.d("lmaoxd2", network.getResult());
+
 
 
 

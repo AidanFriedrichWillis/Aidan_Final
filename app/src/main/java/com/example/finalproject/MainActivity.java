@@ -56,21 +56,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void signin(View view) throws JsonProcessingException, JSONException {
+    public void signin(View view) {
 
-        String username,password;
-        username = String.valueOf(usernameET.getText());
-        password = String.valueOf(passwordET.getText());
-        String[] field = new String[2];
-        field[0] = "username";
-        field[1] = "password";
-        //Creating array for data
-        String[] data = new String[2];
-        data[0] = username;
-        data[1] = password;
         try {
-            putdata.put("username",username);
-            putdata.put("password",password);
+            putdata.put("username",String.valueOf(usernameET.getText()));
+            putdata.put("password",String.valueOf(passwordET.getText()));
 
         }catch(Exception e){
 
@@ -78,70 +68,19 @@ public class MainActivity extends AppCompatActivity {
         RESTFull_services_user rest = new RESTFull_services_user("user/signin");
 
         try{
-            result = rest.postRequest(putdata);
-            Toast.makeText(this,"Succ" , Toast.LENGTH_SHORT).show();
+            if(rest.postRequest(new JSONObject(putdata))){
+                Token.saveToken(rest.getResult());
+                goworkoutPage();
+            }
+            else{
+                Toast.makeText(this, rest.getResult(), Toast.LENGTH_SHORT).show();
+
+            }
+
         }catch(Exception e){
             Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
         }
 
-
-//        Network network = new Network(field,data,"loginLogic");
-//        if (network.getResult().startsWith("c")) {
-//            Toast.makeText(getApplicationContext(), "login succ", Toast.LENGTH_SHORT).show();
-//            Log.d("succmess", network.getResult());
-//
-//            String jsonWork = "";
-//            jsonWork = network.getResult().replace("correct","");
-//            ArrayList<Workout> workouts = new ArrayList<>();
-//
-//            if(jsonWork != "") {
-//
-//
-//                JSONArray jsonArray = new JSONArray(jsonWork);
-//
-//                for(int i = 0;i<jsonArray.length();i++){
-//
-//                    JSONObject tempo = new JSONObject(jsonArray.get(i).toString());
-//
-//                    Workout w = new Workout(tempo.get("name").toString(),tempo.get("date").toString());
-//
-//                    JSONArray tempa = new JSONArray(tempo.getJSONArray("exerises").toString());
-//
-//                    for(int j = 0; j < tempa.length();j++){
-//
-//                        String name;
-//                        int reps;
-//                        int sets;
-//                        int weight;
-//                        JSONObject tempo2 = new JSONObject(tempa.get(j).toString());
-//
-//                        name = (String) tempo2.get("name");
-//                        reps = (int) tempo2.get("reps");
-//                        sets = (int) tempo2.get("sets");
-//                        weight = (int) tempo2.get("weight");
-//                        Exerise e = new Exerise(name,reps,sets,weight);
-//                        w.addExersize(e);
-//
-//                    }
-//
-//                    workouts.add(w);
-//
-//
-//                }
-//
-//            }
-//
-//
-//
-//            User.setUsername(username);
-//            User.setWorkouts(workouts);
-//            goworkoutPage();
-//
-//        } else {
-//            Toast.makeText(getApplicationContext(), network.getResult(), Toast.LENGTH_LONG).show();
-//            Log.d("returnmess", network.getResult());
-//
-//        }
 
 
     }

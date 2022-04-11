@@ -1,41 +1,28 @@
 package com.example.finalproject;
 
+import org.json.JSONObject;
+
 import java.util.HashMap;
 
-public class RESTFull_services_user implements Services{
+public class RESTFull_services_user extends Services{
 
-    private String route ;
-    private NetworkThread request;
 
     public RESTFull_services_user(String route){
         this.route = route;
     }
 
-    @Override
-    public String getRequest(String Data) {
-        return null;
+    public boolean getRequest() {
+        return false;
     }
 
-    @Override
-    public String putRequest() {
-        return null;
+    public boolean putRequest() {
+        return false;
     }
 
-    @Override
-    public String postRequest(HashMap postData) {
-        request = new NetworkThread(route,"POST",postData);
-        request.start();
-        if(request.finish()){
-            return request.getResultData();
-        }
-        else return "Failed to start request";
-    }
 
-    @Override
-    public String deleteRequest() {
-        return null;
+    public boolean deleteRequest() {
+        return false;
     }
-
 
 
 }
