@@ -8,14 +8,29 @@
     android:id="@+id/swipelayout2"
     >
 
+<!--    <TextView-->
+<!--        android:id="@+id/textView3"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="YOOOOOOO"-->
+<!--        android:textSize="40dp"-->
+<!--        />-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/linlay"
         android:orientation="vertical"
-        >
-
+                >
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/textBox"
+        android:orientation="vertical"
+        >
+    </LinearLayout>
+
 
 
 

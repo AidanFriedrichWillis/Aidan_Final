@@ -10,13 +10,13 @@ public class RESTFull_services_workout extends Services {
         this.route = route;
     }
 
+    public boolean getRequest(JSONObject data) {
+        return startRequest("GET");
+    }
 
     public boolean putRequest() {
         return false;
     }
 
 
-    public boolean deleteRequest() {
-        return false;
-    }
 }

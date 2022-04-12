@@ -33,8 +33,6 @@ public class MainPage extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
-
         binding = ActivityMainPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
@@ -43,10 +41,6 @@ public class MainPage extends FragmentActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
-
-
-
-
 
     }
 
@@ -57,7 +51,9 @@ public class MainPage extends FragmentActivity {
 
 
     }
-//    public void finishWorkout(View view){
+
+
+    //    public void finishWorkout(View view){
 //            EditText editText = view.findViewById(R.id.workoutnameET);
 //            Log.d("lmao",String.valueOf(editText.getText()));
 ////            Date d= java.util.Calendar.getInstance().getTime();

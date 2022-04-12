@@ -17,13 +17,15 @@ public abstract class Services {
       };
 
 
-     abstract boolean deleteRequest() ;
+     public boolean deleteRequest(){
+       return startRequest("DELETE");
+     }
 
      public boolean getRequest() {
           return startRequest("GET");
      }
 
-     private boolean startRequest(String method){
+     protected boolean startRequest(String method){
           request = new NetworkThread(route,method,postData);
           request.start();
           if(request.finish()){

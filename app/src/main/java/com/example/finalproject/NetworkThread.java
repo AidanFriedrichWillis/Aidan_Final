@@ -25,7 +25,7 @@ public class NetworkThread extends Thread{
     private int responseCode;
     private String responseMess;
     private boolean isError;
-
+    private String urlSt ="http://10.65.199.35/api/";
     public NetworkThread(String route, String requestType, JSONObject data){
         this.route = route;
         this.requestType = requestType;
@@ -44,10 +44,9 @@ public class NetworkThread extends Thread{
     public void run(){
         try {
             String UTF8 = "UTF-8", iso = "iso-8859-1";
-            URL url = new URL("http://10.65.199.35/api/" + route);
+            URL url = new URL(urlSt + route);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod(this.requestType);
-
             httpURLConnection.setDoInput(true);
             httpURLConnection.setRequestProperty("Authorization", Token.getToken());
             if(requestType == "POST"){

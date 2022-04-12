@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Workout {
+    public String id;
 
     public String getDate() {
         return date;
@@ -22,7 +23,9 @@ public class Workout {
     public String getName() {
         return name;
     }
-
+    public String getId(){
+        return id;
+    }
     private String name = "";
     public void setExerises(ArrayList<Exerise> exerises) {
         this.exerises = exerises;
@@ -42,10 +45,10 @@ public class Workout {
         this.date = date.toString();
         this.exerises = exerises;
     }
-    public Workout(String n, String date) {
+    public Workout(String n, String date,String id) {
         this.name = n;
         this.date = date.toString();
-        this.exerises = exerises;
+        this.id = id;
     }
 
     public Workout(ArrayList<Exerise> exerises) {

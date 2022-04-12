@@ -128,8 +128,7 @@ public final class User {
 
                 JSONObject tempo = new JSONObject(jsonArray.get(i).toString());
 
-                Workout w = new Workout(tempo.get("name").toString(),tempo.get("date").toString());
-
+                Workout w = new Workout(tempo.get("name").toString(),tempo.get("date").toString(),tempo.get("_id").toString());
                 JSONArray tempa = new JSONArray(tempo.getJSONArray("exersizes").toString());
 
                 for(int j = 0; j < tempa.length();j++){

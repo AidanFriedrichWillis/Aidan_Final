@@ -38,14 +38,9 @@ public class AddExersize extends AppCompatActivity {
 
         User.getCurrentWorkout().addExersize(exerise);
 
-        workoutPage();
+        finish();
     }
 
-    public void workoutPage(){
-        Intent intent = new Intent(getApplicationContext(),MainPage.class);
-        startActivity(intent);
-
-    }
 
 
 
