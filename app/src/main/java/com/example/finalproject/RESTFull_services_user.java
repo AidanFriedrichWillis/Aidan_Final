@@ -19,10 +19,8 @@ public class RESTFull_services_user extends Services{
         return false;
     }
 
-
-    public boolean deleteRequest() {
-        return false;
+    public boolean validToken(){
+        return startRequest("GET");
     }
-
 
 }

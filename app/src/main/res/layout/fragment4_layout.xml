@@ -18,6 +18,22 @@
             tools:layout_editor_absoluteX="126dp"
             tools:layout_editor_absoluteY="106dp" />
 
+        <Button
+            android:id="@+id/buttonSignOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Singout"
+
+            />
+        <Button
+            android:id="@+id/buttonDeleteAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_alignBottom="@id/buttonSignOut"
+            android:text="delete"
+            />
+
 
     </RelativeLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

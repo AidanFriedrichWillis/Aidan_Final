@@ -25,6 +25,7 @@ public class Signup extends AppCompatActivity {
         private String res;
         Button signupBTN;
     private HashMap<String,String> postData = new HashMap<String,String>();
+    private RESTFull_services_user rest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +36,20 @@ public class Signup extends AppCompatActivity {
         usernameET= findViewById(R.id.usernameET);
         emailET = findViewById(R.id.emailET);
         passwordET = findViewById(R.id.passwordET);
-
         signupBTN = findViewById(R.id.signupBTN);
+        if(Token.isValid()){
+            goworkoutPage();
+        }
+    }
 
-            }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(Token.isValid()){
+            goworkoutPage();
+        }
+    }
+
 
 
     private void gotologin(){
@@ -52,6 +63,11 @@ public class Signup extends AppCompatActivity {
     public void gologin(View view){
 
         gotologin();
+
+    }
+    public void goworkoutPage(){
+        Intent intent = new Intent(this, MainPage.class);
+        startActivity(intent);
 
     }
     public void gotoHome(View view){
@@ -94,8 +110,7 @@ public class Signup extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        RESTFull_services_user rest = new RESTFull_services_user("user");
-
+        rest = new RESTFull_services_user("user");
         try {
             if(rest.postRequest(new JSONObject(postData))){
                 gotologin();

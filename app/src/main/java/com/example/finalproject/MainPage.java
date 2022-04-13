@@ -51,6 +51,13 @@ public class MainPage extends FragmentActivity {
 
 
     }
+    public void addBtnFunc(View v){
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
+
+    }
 
 
     //    public void finishWorkout(View view){

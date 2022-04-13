@@ -102,4 +102,9 @@ public class Fragment2 extends Fragment {
         refresh();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        refresh();
+    }
 }

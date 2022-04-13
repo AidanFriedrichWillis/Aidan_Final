@@ -155,7 +155,7 @@ public final class User {
 
         }
 
-
+        User.setWorkouts(workouts);
         return workouts;
 
     }

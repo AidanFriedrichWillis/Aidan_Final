@@ -31,6 +31,12 @@ public final class Token {
 
     }
 
+    public static boolean isValid(){
+                 return (new RESTFull_services_user("user/"+"logged").validToken());
+
+
+    }
+
     public static String getToken(){
         String t = null;
         try
@@ -52,10 +58,22 @@ public final class Token {
                 t = stringBuilder.toString();
             }
         }catch (IOException e){
-            Toast.makeText(App.getAppContext(), "Failed to get token", Toast.LENGTH_SHORT).show();
 
         }
         return t;
+
+    }
+
+    public static boolean deleteToken(){
+        try{
+            boolean delete = App.getAppContext().deleteFile("token");
+
+            return delete;
+        }
+        catch (Exception e){
+            return false;
+        }
+
 
     }
 
