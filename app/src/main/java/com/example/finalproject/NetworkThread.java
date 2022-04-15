@@ -25,7 +25,7 @@ public class NetworkThread extends Thread{
     private int responseCode;
     private String responseMess;
     private boolean isError;
-    private String urlSt ="http://10.65.199.35/api/";
+    private String urlSt ="http://10.65.199.137/api/";
     public NetworkThread(String route, String requestType, JSONObject data){
         this.route = route;
         this.requestType = requestType;
