@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ public class AddExersize extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_add_exersize);
         nameET = findViewById(R.id.exersizeNameET);
         repsET = findViewById(R.id.repsET);
@@ -34,11 +36,32 @@ public class AddExersize extends AppCompatActivity {
 
     public void add(View view){
 
-        Exerise exerise = new Exerise(String.valueOf(nameET.getText()),Integer.valueOf(String.valueOf(repsET.getText())),Integer.valueOf(String.valueOf(setsET.getText())),Integer.valueOf(String.valueOf(weightET.getText())));
+        try{
+            Exerise exerise = new Exerise(String.valueOf(nameET.getText()),Integer.parseInt(String.valueOf(repsET.getText())),Integer.parseInt(String.valueOf(setsET.getText())),Integer.parseInt(String.valueOf(weightET.getText())));
+            User.getCurrentWorkout().addExersize(exerise);
+            finish();
 
-        User.getCurrentWorkout().addExersize(exerise);
+        }catch (Exception e){
+            Toast.makeText(App.getAppContext(), e.toString(), Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void plusOne(View view){addBy(1,repsET);}
+    public void plusTwo(View view){addBy(1,setsET); }
+    public void plusThree(View view){addBy(5,weightET);}
+    public void minusOne(View view){addBy(-1,repsET);}
+    public void minusTwo(View view){addBy(-1,setsET);}
+    public void minusThree(View view){addBy(-5,weightET);}
 
-        finish();
+    private void addBy(int value, EditText editText){
+        int currentValue = 0;
+            try {
+                currentValue =Integer.parseInt(String.valueOf(editText.getText()));
+            }catch(Exception e){
+                currentValue = 0;
+            }
+            if(!((currentValue+value) <0)){
+                editText.setText(String.valueOf(currentValue+value));
+            }
     }
 
 

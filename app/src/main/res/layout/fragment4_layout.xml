@@ -15,23 +15,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Settings"
-            tools:layout_editor_absoluteX="126dp"
-            tools:layout_editor_absoluteY="106dp" />
+            android:layout_centerInParent="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:textStyle="bold"
+            android:textSize="40dp"
+            android:textColor="@color/black"
+
+            />
 
         <Button
             android:id="@+id/buttonSignOut"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Singout"
+            android:layout_centerInParent="true"
+            android:layout_below="@id/textView2"
+            android:layout_alignParentStart="true"
+            android:textAlignment="viewStart"
+            android:backgroundTint="#F37851"
+            android:textColor="@color/black"
 
             />
+
         <Button
             android:id="@+id/buttonDeleteAccount"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/buttonSignOut"
+            android:layout_alignParentStart="true"
             android:layout_centerInParent="true"
-            android:layout_alignBottom="@id/buttonSignOut"
             android:text="delete"
+            android:textAlignment="viewStart"
+            android:backgroundTint="#F37851"
+            android:textColor="@color/black"
+
             />
 
 

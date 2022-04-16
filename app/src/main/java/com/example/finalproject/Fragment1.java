@@ -87,23 +87,29 @@ public class Fragment1 extends Fragment  implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.finishworkoutBTN1:
                 Gson gson = new Gson();
-                User.getCurrentWorkout().setName(String.valueOf(workoutnameET.getText()));
-                String s = gson.toJson(User.getCurrentWorkout());
-                RESTFull_services_workout rest = new RESTFull_services_workout("workout");
-                Log.e("URLLMAO",s);
                 try{
-                    if(rest.postRequest(new JSONObject(s))){
-                        Toast.makeText(App.getAppContext(), rest.getResult(), Toast.LENGTH_SHORT).show();
+                    ExersizeExpection.validate(workoutnameET.getText().toString());
+                    User.getCurrentWorkout().setName(String.valueOf(workoutnameET.getText()));
+                    User.getCurrentWorkout().setDate(String.valueOf(System.currentTimeMillis()));
+                    String s = gson.toJson(User.getCurrentWorkout());
+                    RESTFull_services_workout rest = new RESTFull_services_workout("workout");
+                    try{
+                        if(rest.postRequest(new JSONObject(s))){
+                            Toast.makeText(App.getAppContext(), rest.getResult(), Toast.LENGTH_SHORT).show();
 
-                    }
-                    else {
-                        Toast.makeText(App.getAppContext(), rest.getResult(), Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(App.getAppContext(), rest.getResult(), Toast.LENGTH_SHORT).show();
 
+                        }
                     }
-                }
-                catch (Exception e){
+                    catch (Exception e){
+                        Toast.makeText(App.getAppContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }catch(ExersizeExpection e){
                     Toast.makeText(App.getAppContext(), e.toString(), Toast.LENGTH_SHORT).show();
                 }
+
 
 
                 break;

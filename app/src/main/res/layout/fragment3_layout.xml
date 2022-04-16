@@ -10,9 +10,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
+
         >
-
-
         <Spinner
             android:id="@+id/graphSP"
             android:layout_width="304dp"
@@ -22,16 +22,14 @@
             android:layout_marginStart="39dp"
             android:layout_marginTop="85dp" />
 
-        <com.jjoe64.graphview.GraphView
-            android:id="@+id/graphGV"
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/idBarChart"
+            android:padding="30dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="222dp"
-            android:layout_marginEnd="0dp">
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_below="@id/graphSP" />
 
-        </com.jjoe64.graphview.GraphView>
 
     </RelativeLayout>>
 

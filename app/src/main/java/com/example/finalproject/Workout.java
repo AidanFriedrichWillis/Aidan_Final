@@ -39,7 +39,7 @@ public class Workout {
     public void setName(String n){
         name = n;
     }
-
+    public void setDate(String date){this.date = date;}
     public Workout(String date, ArrayList<Exerise> exerises, String n) {
        this.name = n;
         this.date = date.toString();

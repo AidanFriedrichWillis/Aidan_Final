@@ -1,5 +1,7 @@
 package com.example.finalproject;
 
+import static com.github.mikephil.charting.components.XAxis.XAxisPosition.BOTTOM;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,13 +20,25 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Fragment3 extends Fragment {
     private Spinner graphSP;
-    private GraphView graphView;
+    private BarChart barChart;
     private SwipeRefreshLayout swipeRefreshLayout;
-
+    private JSONArray dataPoints;
+    private String[] xAxis = {"jan","feb","march","april","may","june","july","august","sept","october","november","december"};
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -32,18 +46,16 @@ public class Fragment3 extends Fragment {
         View view = inflater.inflate(R.layout.fragment3_layout,container,false);
         swipeRefreshLayout = view.findViewById(R.id.swipelayout3);
         graphSP = view.findViewById(R.id.graphSP);
-        graphView = view.findViewById(R.id.graphGV);
+        barChart = view.findViewById(R.id.idBarChart);
 
 
         onLoad();
 
-//        graphView.addSeries(createGraph());
 
         graphSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                graphView.removeAllSeries();
-//                graphView.addSeries(createGraph());
+                createBarChart();
             }
 
             @Override
@@ -77,6 +89,24 @@ public class Fragment3 extends Fragment {
         onLoad();
     }
 
+    public void createBarChart(){
+       barChart.setData(new BarData(new BarDataSet(createGraph(),"set")));
+       barChart.getDescription().setEnabled(false);
+       barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(xAxis));
+        barChart.getXAxis().setPosition(BOTTOM);
+
+        barChart.getXAxis().setGranularity(1);
+        barChart.getXAxis().setGranularityEnabled(true);
+        barChart.setDragEnabled(true);
+        barChart.setVisibleXRangeMaximum(3);
+        barChart.getData().setBarWidth(1f);
+        barChart.getXAxis().setAxisMinimum(0);
+        barChart.animate();
+        barChart.invalidate();
+
+
+
+    }
 
     public void onLoad(){
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),R.layout.support_simple_spinner_dropdown_item,User.allENames());
@@ -84,22 +114,27 @@ public class Fragment3 extends Fragment {
 
     }
 
-//    public LineGraphSeries<DataPoint> createGraph(){
-//        String selected = graphSP.getSelectedItem().toString();
-//        Date currentDate = java.util.Calendar.getInstance().getTime();
-//        int currentyear = currentDate.getYear();
-//        LineGraphSeries<DataPoint> series = new LineGraphSeries<>();
-//        int x = 0;
-//        int y = 0;
-//        for(int i =0; i < 12; i++ ){
-//            x+=1;
-//            y = User.pb(selected,i,currentyear);
-//            series.appendData(new DataPoint(x,y),true,12);
-//        }
+    public ArrayList<BarEntry> createGraph(){
+        String selected = graphSP.getSelectedItem().toString();
+        RESTFull_services_workout rest = new RESTFull_services_workout("workout/where/search?name="+selected);
+        Date currentDate = java.util.Calendar.getInstance().getTime();
+        ArrayList<BarEntry> series = new ArrayList<>();
 //
-//        return series;
-//
-//    }
+        if(rest.getRequest()){
+            try {
+                dataPoints = new JSONArray(rest.getResult());
+                int index = 1;
+                for(float i =1f; i < 12f; i += 1f ){
+                    series.add(new BarEntry(i, Float.parseFloat(String.valueOf(dataPoints.get(index)))));
+                    index++;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return series;
+
+    }
 
 
 }
