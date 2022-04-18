@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.example.finalproject.HttpServices.RESTFull_services_user;
+import com.example.finalproject.Models.User;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -68,8 +69,7 @@ public final class Token {
 
     public static boolean deleteToken(){
         try{
-
-            return App.getAppContext().deleteFile("token");
+            return (App.getAppContext().deleteFile("token") && User.resetUser());
         }
         catch (Exception e){
             return false;

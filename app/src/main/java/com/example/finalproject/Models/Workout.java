@@ -1,50 +1,48 @@
 package com.example.finalproject.Models;
 
+import android.annotation.SuppressLint;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Workout {
-    public String id;
+    private String id;
 
     public String getDate() {
-        return date;
+
+        return new SimpleDateFormat("dd MMM yyyy HH:mm:ss").format(Long.parseLong(this.date));
     }
 
     public ArrayList<Exerise> getExerises() {
         return exerises;
     }
 
-    public void setDate(Date date) {
-
-        this.date = date.toString();
-    }
 
     public String getName() {
         return name;
     }
-    public String getId(){
+
+    public String getId() {
         return id;
     }
-    private String name = "";
-    public void setExerises(ArrayList<Exerise> exerises) {
-        this.exerises = exerises;
-    }
 
+    private String name = "";
 
     private String date;
     private ArrayList<Exerise> exerises = new ArrayList<>();
 
 
-    public void setName(String n){
+    public void setName(String n) {
         name = n;
     }
-    public void setDate(String date){this.date = date;}
-    public Workout(String date, ArrayList<Exerise> exerises, String n) {
-       this.name = n;
+
+    public void setDate(String date) {
         this.date = date;
-        this.exerises = exerises;
     }
-    public Workout(String n, String date,String id) {
+
+    public Workout(String n, String date, String id) {
         this.name = n;
         this.date = date;
         this.id = id;
@@ -57,13 +55,10 @@ public class Workout {
 
     }
 
-    public void  addExersize (Exerise exerise){
+    public void addExersize(Exerise exerise) {
         exerises.add(exerise);
 
     }
-
-
-
 
 
 }

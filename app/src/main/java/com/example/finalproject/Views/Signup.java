@@ -73,26 +73,6 @@ public class Signup extends AppCompatActivity {
         startActivity(intent);
 
     }
-    public void gotoHome(View view){
-
-        Intent intent = new Intent(this, Homescreen.class);
-        startActivity(intent);
-
-    }
-    public void workout(View view){
-
-        Intent intent = new Intent(this, WorkoutPage.class);
-        startActivity(intent);
-
-
-    }
-    public void tab(View view){
-        Intent intent = new Intent(this, MainPage.class);
-        startActivity(intent);
-
-
-
-    }
 
 
 
@@ -116,6 +96,7 @@ public class Signup extends AppCompatActivity {
         rest = new RESTFull_services_user("user");
         try {
             if(rest.postRequest(new JSONObject(postData))){
+                Toast.makeText(App.getAppContext(), "Sign Up Succsessfull", Toast.LENGTH_SHORT).show();
                 gotologin();
             }
             else{

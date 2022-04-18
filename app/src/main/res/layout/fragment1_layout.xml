@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/swipelayout"
-    tools:context=".Views.WorkoutPage">
+    >
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -89,19 +89,18 @@
                 android:id="@+id/finishworkoutBTN1"
                 android:layout_width="75dp"
                 android:layout_height="50dp"
-                android:layout_centerHorizontal="true"
-                android:layout_toRightOf="@id/workoutnameET"
-                android:backgroundTint="#F37851"
-                android:text="ADD"
-                android:textColor="@color/black"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="25dp"
                 android:layout_marginBottom="20dp"
+                android:layout_toRightOf="@id/workoutnameET"
+                android:backgroundTint="#F37851"
                 android:onClick="addBtnFunc"
-                />
+                android:text="ADD"
+                android:textColor="@color/black" />
 
 
         </RelativeLayout>

@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.finalproject.Application.App;
 import com.example.finalproject.R;
@@ -21,46 +22,50 @@ import com.example.finalproject.Views.Signup;
 public class Fragment4 extends Fragment implements View.OnClickListener {
     private Button b;
     private Button deleteBTN;
+    private SwipeRefreshLayout swipeRefreshLayout;
     RESTFull_services_user rest = new RESTFull_services_user("user");
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
-
-        View view = inflater.inflate(R.layout.fragment4_layout,container,false);
+        View view = inflater.inflate(R.layout.fragment4_layout, container, false);
         b = view.findViewById(R.id.buttonSignOut);
         deleteBTN = view.findViewById(R.id.buttonDeleteAccount);
+        swipeRefreshLayout = view.findViewById(R.id.swipelayout4);
+
+
         deleteBTN.setOnClickListener(this);
         b.setOnClickListener(this);
-    return view;
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            swipeRefreshLayout.setRefreshing(false);
+        });
+        return view;
     }
 
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.buttonSignOut:
-            {
+            case R.id.buttonSignOut: {
                 signOut();
             }
-            case R.id.buttonDeleteAccount:
-            {                Toast.makeText(App.getAppContext(), "Hello", Toast.LENGTH_SHORT).show();
+            case R.id.buttonDeleteAccount: {
+                Toast.makeText(App.getAppContext(), "Hello", Toast.LENGTH_SHORT).show();
 
-                if(rest.deleteRequest()){
+                if (rest.deleteRequest()) {
                     signOut();
                 }
             }
         }
     }
 
-    public void signOut(){
-        if(Token.deleteToken()){
+    public void signOut() {
+        if (Token.deleteToken()) {
             Intent intent = new Intent(Fragment4.this.getActivity(), Signup.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
-        }
-        else {
+        } else {
             Toast.makeText(App.getAppContext(), "Failed to signOut", Toast.LENGTH_SHORT).show();
         }
 

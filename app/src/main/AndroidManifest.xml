@@ -28,9 +28,6 @@
             android:name=".Views.AddExersize"
             android:exported="true" />
         <activity
-            android:name=".Views.WorkoutPage"
-            android:exported="true" />
-        <activity
             android:name=".Application.Homescreen"
             android:exported="true" />
         <activity
