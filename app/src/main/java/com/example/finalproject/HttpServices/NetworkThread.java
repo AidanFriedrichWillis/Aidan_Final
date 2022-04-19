@@ -14,6 +14,9 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Network thread class, Http requests require A secondary thread, this inherits from the Thread java class.
+ */
 public class NetworkThread extends Thread{
 
     private final String route;
@@ -24,12 +27,22 @@ public class NetworkThread extends Thread{
     private String responseMess;
     private boolean isError;
 
+    /**
+     * Creates the network object based on various datapoints.
+     * @param route This is the string of the route which will be added to the URL to route the request to the correct place in the controller.
+     * @param requestType The type of request, GET/POST/PUT/DELETE. These are Restful and correlated with CRUD Operations.
+     * @param data The Json object benign sent to the server, allowing for easily readable variables to be read from JS
+     */
     public NetworkThread(String route, String requestType, JSONObject data){
         this.route = route;
         this.requestType = requestType;
         this.data = data;
     }
 
+    /**
+     * Allows the thread to be watched by the main thread, to see when the data has been received from the server. Works as a Custom ASYNC function.
+     * @return True is the Run() function has finished and the response has been received.
+     */
     public boolean finish() {
         while (true) {
             if (!this.isAlive()) {
@@ -38,6 +51,12 @@ public class NetworkThread extends Thread{
         }
     }
 
+    /**
+     * The run function being overridden from the Thread class, this is what runs on creation of the thread.
+     * This function will generate a HTTP conection and allow us to write data to the URL/Route this uses the Authorization from the token in Token.class.
+     * If there is a failed response we save the error code in the IOException catch
+     * The data received from the server is saved within this object.
+     */
     @Override
     public void run(){
         try {
@@ -77,10 +96,17 @@ public class NetworkThread extends Thread{
         }
     }
 
+    /**
+     *
+     * @return The resultData from the class
+     */
     public String getResultData() {
         return resultData;
     }
-
+    /**
+     *
+     * @return True if the connection or response was an error.
+     */
     public boolean isError() {
         return isError;
     }

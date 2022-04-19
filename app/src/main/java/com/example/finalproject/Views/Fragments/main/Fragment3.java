@@ -38,6 +38,13 @@ public class Fragment3 extends Fragment {
     private final String[] xAxis = {"jan","feb","march","april","may","june","july","august","sept","october","november","december"};
     private RESTFull_services_workout rest;
 
+    /**
+     * On crete for the settings menu fragment, init all UI aspects.
+     * @param inflater Inflater Object
+     * @param container Container Object
+     * @param savedInstanceState Instance of Application
+     * @return The view
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -76,18 +83,27 @@ public class Fragment3 extends Fragment {
 
     }
 
+    /**
+     *
+     */
     @Override
     public void onResume() {
         super.onResume();
         onLoad();
     }
 
+    /**
+     *
+     */
     @Override
     public void onStart() {
         super.onStart();
         onLoad();
     }
 
+    /**
+     *
+     */
     public void createBarChart(){
        barChart.setData(new BarData(new BarDataSet(createGraph(),"set")));
        barChart.getDescription().setEnabled(false);
@@ -107,12 +123,19 @@ public class Fragment3 extends Fragment {
 
     }
 
+    /**
+     *
+     */
     public void onLoad(){
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),R.layout.support_simple_spinner_dropdown_item, User.allENames());
         graphSP.setAdapter(adapter);
 
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<BarEntry> createGraph(){
         String selected = graphSP.getSelectedItem().toString();
         ArrayList<BarEntry> series = new ArrayList<>();

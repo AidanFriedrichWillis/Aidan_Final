@@ -30,6 +30,13 @@ public class Fragment1 extends Fragment  implements View.OnClickListener {
     private SwipeRefreshLayout swipeRefreshLayout;
     private RESTFull_services_workout rest = new RESTFull_services_workout("workout");
 
+    /**
+     * On crete for the settings menu fragment, init all UI aspects.
+     * @param inflater Inflater Object
+     * @param container Container Object
+     * @param savedInstanceState Instance of Application
+     * @return The view
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,9 +48,7 @@ public class Fragment1 extends Fragment  implements View.OnClickListener {
         swipeRefreshLayout = view.findViewById(R.id.swipelayout);
         String s = "";
         refresh();
-
         finishBTn.setOnClickListener(this);
-
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -59,6 +64,9 @@ public class Fragment1 extends Fragment  implements View.OnClickListener {
 
     }
 
+    /**
+     *  The function that runs when the page is refreshed
+     */
     public void refresh(){
 
         String s = "";
@@ -72,12 +80,19 @@ public class Fragment1 extends Fragment  implements View.OnClickListener {
 
     }
 
+    /**
+     *On Resume of Activity
+     */
     @Override
     public void onResume() {
         super.onResume();
         refresh();
     }
 
+    /**
+     * On click of the buttons in the View
+     * @param v View
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

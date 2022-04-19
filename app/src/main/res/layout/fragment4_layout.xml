@@ -28,15 +28,14 @@
             android:id="@+id/buttonSignOut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Singout"
-            android:layout_centerInParent="true"
             android:layout_below="@id/textView2"
             android:layout_alignParentStart="true"
-            android:textAlignment="viewStart"
+            android:layout_centerInParent="true"
             android:backgroundTint="#F37851"
-            android:textColor="@color/black"
+            android:text="SiGNout"
+            android:textAlignment="viewStart"
 
-            />
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/buttonDeleteAccount"

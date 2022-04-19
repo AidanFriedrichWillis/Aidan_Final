@@ -28,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
     private Button signupBTN;
     private final HashMap<String,String> putdata = new HashMap<String,String>();
     private String result;
+
+    /**
+     * On Create of the Activity
+     * @param savedInstanceState The instance of the activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,20 +48,36 @@ public class MainActivity extends AppCompatActivity {
         Log.d("ipxd" ,ipAddress);
 
     }
+
+    /**
+     * Starts an intent
+     */
     public void goworkoutPage(){
         Intent intent = new Intent(this, MainPage.class);
         startActivity(intent);
 
     }
+
+    /**
+     * Starts an intent
+     */
     public void signUpPage(){
         Intent intent = new Intent(this, Signup.class);
         startActivity(intent);
     }
 
+    /**
+     * Go to signup button function
+     * @param v Passes in the View
+     */
     public void goSignUp(View v){
         signUpPage();
     }
 
+    /**
+     * Function linked to the sign in button
+     * @param view V
+     */
     public void signin(View view) {
 
         try {

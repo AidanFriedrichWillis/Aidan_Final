@@ -32,10 +32,19 @@ import org.junit.runners.model.Statement;
 public class A_Test {
     @Rule
     public ActivityScenarioRule  rule = new ActivityScenarioRule<>(Signup.class);
+
+    /**
+     * Set up for testing in the login UI test.
+     * @throws Exception When failed
+     */
     @Before
     public void setUp() throws Exception {
         Token.deleteToken();
     }
+
+    /**
+     * Fails test simulates a failed login
+     */
     @Test
     public void FailingSignUp_Test(){
 
@@ -48,6 +57,10 @@ public class A_Test {
         onView(withId(R.id.signupBTN)).perform(click());
         onView(withId(R.id.emailET)).check(matches(isDisplayed()));
     }
+
+    /**
+     * Pass test with legit data.
+     */
     @Test
     public void PassSignUp_Test(){
         ActivityScenario scenario = rule.getScenario();

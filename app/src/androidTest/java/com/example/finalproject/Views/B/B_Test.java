@@ -26,10 +26,18 @@ public class B_Test {
 
     @Rule
     public ActivityScenarioRule rule = new ActivityScenarioRule<>(Signup.class);
+    /**
+     * Set up for testing in the Adding exercise UI test.
+     * @throws Exception When failed
+     */
     @Before
     public void setUp() throws Exception {
 
     }
+
+    /**
+     * Creating a workout with bad data. SEmulating a fail
+     */
     @Test
     public void CreatingWorkoutFail_Test(){
 
@@ -43,6 +51,9 @@ public class B_Test {
         onView(withId(R.id.finishAddBtn)).check(matches(isDisplayed()));
 
     }
+    /**
+     * Creating a successful
+     */
     @Test
     public void CreatingWorkoutPass_Test(){
         onView(withId(R.id.addExersise1)).perform(click());
@@ -55,6 +66,9 @@ public class B_Test {
         onView(withId(R.id.addExersise1)).check(matches(isDisplayed()));
     }
 
+    /**
+     * Creating a workout bad data simulate fail
+     */
     @Test
     public void SavingWorkoutFail_Test(){
         onView(withId(R.id.workoutnameET)).perform(typeText(String.valueOf(R.string.BAD_LONG_String)));
@@ -63,6 +77,9 @@ public class B_Test {
         onView(withId(R.id.addExersise1)).check(matches(isDisplayed()));
     }
 
+    /**
+     * Success Test case saving workout
+     */
     @Test
     public void SavingWorkoutPass_Test(){
         onView(withId(R.id.workoutnameET)).perform(typeText("THIS NAME IS JUST RIGHT"));

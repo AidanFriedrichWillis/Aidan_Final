@@ -25,6 +25,13 @@ public class Fragment4 extends Fragment implements View.OnClickListener {
     private SwipeRefreshLayout swipeRefreshLayout;
     RESTFull_services_user rest = new RESTFull_services_user("user");
 
+    /**
+     * On crete for the settings menu fragment, init all UI aspects.
+     * @param inflater Inflater Object
+     * @param container Container Object
+     * @param savedInstanceState Instance of Application
+     * @return The view
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,7 +50,10 @@ public class Fragment4 extends Fragment implements View.OnClickListener {
         return view;
     }
 
-
+    /**
+     *On click of the Buttons in view
+     * @param v View
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -60,6 +70,9 @@ public class Fragment4 extends Fragment implements View.OnClickListener {
         }
     }
 
+    /**
+     * SignPut Linked to the Signout Button, Deletes User data and removes the activities  from the stack.
+     */
     public void signOut() {
         if (Token.deleteToken()) {
             Intent intent = new Intent(Fragment4.this.getActivity(), Signup.class);

@@ -20,6 +20,11 @@ public class ExeriszeInfo extends AppCompatActivity {
 
     private Workout workout;
     private RESTFull_services_workout rest;
+
+    /**
+     * On Create of the Activity
+     * @param savedInstanceState The instance of the activity
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Objects.requireNonNull(getSupportActionBar()).hide();
@@ -53,6 +58,10 @@ public class ExeriszeInfo extends AppCompatActivity {
 
     }
 
+    /**
+     * Button function for the delete
+     * @param view Takes in the View of the object.
+     */
     public void deleteBtn(View view){
         try {
             if(rest.deleteRequest()){

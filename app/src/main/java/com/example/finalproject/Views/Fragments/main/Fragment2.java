@@ -30,7 +30,13 @@ public class Fragment2 extends Fragment {
     private LinearLayout linearLayout;
     private final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
    private  RESTFull_services_workout rest = new RESTFull_services_workout("workout");
-
+    /**
+     * On crete for the settings menu fragment, init all UI aspects.
+     * @param inflater Inflater Object
+     * @param container Container Object
+     * @param savedInstanceState Instance of Application
+     * @return The view
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,7 +54,6 @@ public class Fragment2 extends Fragment {
             swipeRefreshLayout.setRefreshing(false);
 
         });
-
 
         return view;
 
@@ -96,13 +101,17 @@ public class Fragment2 extends Fragment {
 
 
     }
-
+    /**
+     *On Resume of Activity
+     */
     @Override
     public void onResume() {
         super.onResume();
         refresh();
     }
-
+    /**
+     *On Start of Activity
+     */
     @Override
     public void onStart() {
         super.onStart();

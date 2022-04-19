@@ -21,15 +21,19 @@ import java.util.HashMap;
 
 public class Signup extends AppCompatActivity {
 
-   private EditText fullnameET;
+    private EditText fullnameET;
     private EditText usernameET;
     private EditText passwordET;
     private EditText emailET;
-        private String res;
-        Button signupBTN;
+    private String res;
+    private Button signupBTN;
     private final HashMap<String,String> postData = new HashMap<String,String>();
     private RESTFull_services_user rest;
 
+    /**
+     * On Create of the Activity
+     * @param savedInstanceState The instance of the activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +49,9 @@ public class Signup extends AppCompatActivity {
         }
     }
 
+    /**
+     *On Resume of Activity
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -53,29 +60,36 @@ public class Signup extends AppCompatActivity {
         }
     }
 
-
-
+    /**
+     * Go to login Intent Function
+     */
     private void gotologin(){
-
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-
     }
 
+    /**
+     * Goes to login
+     * @param view Passes in the View
+     */
     public void gologin(View view){
-
         gotologin();
-
     }
+
+    /**
+     * Starts the Workout Page intent
+     */
     public void goworkoutPage(){
         Intent intent = new Intent(this, MainPage.class);
         startActivity(intent);
 
     }
 
-
-
+    /**
+     * Function ran when Singup button pressed
+     * @param view Psss in the view
+     */
     public void signup(View view) {
 
         String fullname, username, password, email;

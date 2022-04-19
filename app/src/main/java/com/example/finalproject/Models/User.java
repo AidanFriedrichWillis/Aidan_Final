@@ -7,18 +7,37 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * The User class, has less attributes then the model in the server, less sensitive data.
+ * Holds the temp workout data we need when running the app.
+ */
 public final class User {
-
     private static Workout currentWorkout = new Workout();
     private static ArrayList<Workout> workouts = new ArrayList<>();
-
+    /**
+     *
+     * @return Workouts from the user
+     */
     public static ArrayList<Workout> getWorkouts() {
         return workouts;
     }
+    /**
+     *
+     * @return Current workout from the user.
+     */
     public static Workout getCurrentWorkout() {
         return currentWorkout;
     }
+    /**
+     * Sets the workouts to the workouts received from server.
+     * @param workouts List of workouts
+     */
     public static void setWorkouts(ArrayList<Workout> workouts) { User.workouts = workouts; }
+    public User() {}
+    /**
+     * Removes any data the user may have in the scope of the application
+     * @return True if the data is reset.
+     */
     public  static boolean resetUser(){
         currentWorkout = null;
         if(currentWorkout == null){
@@ -26,9 +45,10 @@ public final class User {
         }
         return false;
     }
-
-    public User() {}
-
+    /**
+     * Gets a list of all the names from the workouts we have in memory.
+     * @return A list of Strings containing the names of the exercises.
+     */
     public static ArrayList<String> allENames() {
 
         ArrayList<String> enames = new ArrayList<>();
@@ -44,7 +64,12 @@ public final class User {
         }
         return enames;
     }
-
+    /**
+     * Creates a list of exercises based on the JSON object we revived from the server.
+     * @param jsonST The JSon in string format
+     * @return A list of workout objects, which we can use.
+     * @throws JSONException
+     */
     public static ArrayList<Workout> fromJson(String jsonST) throws JSONException {
         ArrayList<Workout> workouts = new ArrayList<>();
 

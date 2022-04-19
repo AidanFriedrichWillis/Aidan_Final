@@ -22,6 +22,10 @@ public class AddExersize extends AppCompatActivity {
     private Button addexersieBTN;
     private EditText weightET;
 
+    /**
+     * On Create of the Activity
+     * @param savedInstanceState The instance of the activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +38,10 @@ public class AddExersize extends AppCompatActivity {
         weightET = findViewById(R.id.weightET);
     }
 
+    /**
+     * On click function to add exercise button
+     * @param view Passes in a View
+     */
     public void add(View view){
 
         try{
@@ -52,6 +60,11 @@ public class AddExersize extends AppCompatActivity {
     public void minusTwo(View view){addBy(-1,setsET);}
     public void minusThree(View view){addBy(-5,weightET);}
 
+    /**
+     * Adds the value to the Weight Reps and sets
+     * @param value To add by.
+     * @param editText Edit text to add to.
+     */
     private void addBy(int value, EditText editText){
         int currentValue = 0;
             try {
