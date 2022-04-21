@@ -181,5 +181,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/weightET" />
 
+    <ImageButton
+        android:id="@+id/voiceBtn"
+        android:layout_width="75dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="36dp"
+        android:onClick="SpeakBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/finishAddBtn"
+        app:srcCompat="@android:drawable/ic_btn_speak_now" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

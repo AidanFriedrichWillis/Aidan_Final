@@ -39,11 +39,8 @@ public final class User {
      * @return True if the data is reset.
      */
     public  static boolean resetUser(){
-        currentWorkout = null;
-        if(currentWorkout == null){
-            return true;
-        }
-        return false;
+        currentWorkout = new Workout();
+        return currentWorkout.getExerises().isEmpty();
     }
     /**
      * Gets a list of all the names from the workouts we have in memory.

@@ -1,14 +1,21 @@
 package com.example.finalproject.Views;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static android.Manifest.permission.RECORD_AUDIO;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import android.content.pm.PackageManager;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.finalproject.Application.App;
+import com.example.finalproject.Application.VoiceAssistant;
 import com.example.finalproject.Models.Exerise;
 import com.example.finalproject.R;
 import com.example.finalproject.Models.User;
@@ -21,7 +28,8 @@ public class AddExersize extends AppCompatActivity {
     private EditText setsET;
     private Button addexersieBTN;
     private EditText weightET;
-
+    private ImageButton voiceAsBtn;
+    private VoiceAssistant voiceAssistant;
     /**
      * On Create of the Activity
      * @param savedInstanceState The instance of the activity
@@ -30,14 +38,27 @@ public class AddExersize extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
+        ActivityCompat.requestPermissions(this,new String[]{RECORD_AUDIO}, PackageManager.PERMISSION_GRANTED);
         setContentView(R.layout.activity_add_exersize);
         nameET = findViewById(R.id.exersizeNameET);
         repsET = findViewById(R.id.repsET);
         setsET = findViewById(R.id.setsET);
         addexersieBTN = findViewById(R.id.finishAddBtn);
         weightET = findViewById(R.id.weightET);
+        voiceAsBtn = findViewById(R.id.voiceBtn);
+
     }
 
+    /**
+     *  Funtion on click for speak btn
+     * @param view Takes in app view
+     */
+    public void SpeakBtn(View view){
+        voiceAssistant = new VoiceAssistant();
+        voiceAssistant.voiceFunction(nameET,repsET,setsET,weightET);
+
+
+    }
     /**
      * On click function to add exercise button
      * @param view Passes in a View

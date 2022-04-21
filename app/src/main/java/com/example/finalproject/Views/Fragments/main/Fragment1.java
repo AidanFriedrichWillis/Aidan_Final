@@ -70,7 +70,7 @@ public class Fragment1 extends Fragment  implements View.OnClickListener {
     public void refresh(){
 
         String s = "";
-        if(!User.getCurrentWorkout().getExerises().isEmpty()) {
+        if(!User.getCurrentWorkout().getExerises().isEmpty() ) {
             for (int i = 0; i < User.getCurrentWorkout().getExerises().size(); i++) {
                 s += "Exersize: " + User.getCurrentWorkout().getExerises().get(i).getName() + " Reps:" + User.getCurrentWorkout().getExerises().get(i).getReps() + " Sets:" + User.getCurrentWorkout().getExerises().get(i).getSets() + "\n";
             }
