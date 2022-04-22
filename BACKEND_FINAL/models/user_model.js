@@ -7,29 +7,28 @@ const userSchema = new Schema(
     fullname: {
       type: String,
       required: true,
-      unique: true,
-      trim: true,
       minlength: 1,
+      maxlength: 75
     },
     username: {
       type: String,
       required: true,
       unique: true,
-      trim: true,
       minlength: 1,
+      maxlength:20
     },
     email: {
       type: String,
       required: true,
       unique: true,
-      trim: true,
       minlength: 1,
+      maxlength: 50
     },
     password: {
       type: String,
       required: true,
-      trim: true,
       minlength: 1,
+
     }
   },
   {

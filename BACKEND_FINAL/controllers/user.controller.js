@@ -10,59 +10,57 @@ USING PROMISES ON REQUESTS
 
 */
 
-//READ ALL
-module.exports.findAll = async (req, res) => {
-  User.find()
-    .then((users) => res.status(200).json(users))
-    .catch((err) => res.status(400).json("Error: " + err));
-};
 //CREATE AN ACCOUNT
 module.exports.signup = async (req, res) => {
-    console.log(req.body)
-    const oldUser = await User.findOne({ username: req.body.username });
-    if (oldUser) {
-        console.log("yo")
-        return res.status(409).json("User Already Exists. Please Login");
-    }
+  const oldUser = await User.findOne({ username: req.body.username });
+  if (oldUser) {
+    return res.status(409).json("User Already Exists. Please Login");
+  }
   var password = req.body.password;
   password = await bcrypt.hash(password, 10);
   const username = req.body.username;
   const email = req.body.email;
   const fullname = req.body.fullname;
   const newUser = new User({ fullname, username, email, password });
-  try{
-newUser
-  .save()
-  .then(() => res.status(201).json("User added!"))
-  .catch((err) => {console.log("hello")
-   res.status(400).json("Error: " + err)});
-  }
-  catch(e){
+  try {
+    newUser
+      .save()
+      .then(() => res.status(201).json("User added!"))
+      .catch((err) => {
+        res.status(400).json("Error");
+      });
+  } catch (e) {
     res.json("fail");
-
   }
-  
 };
+
+module.exports.accept = async (req, res) => {
+  return res.status(200).json("ez");
+};
+
 //POST SIGN IN AND RETURN TOKEN
 module.exports.signin = async (req, res) => {
+
   const user = await User.findOne({
     username: req.body.username,
   });
-  const token = jwt.sign(
-    {
-      username: req.body.username,
-      rank: user.rank,
-      id: user._id,
-    },
-    "yo",
-    { expiresIn: 86400 }
-  );
-
-  return res.json({ status: "ok", user: token });
+  if (user) {
+    const token = jwt.sign(
+      {
+        username: req.body.username,
+        id: user.id,
+      },
+      "yo",
+      { expiresIn: 86400 }
+    );
+    return res.status(200).json(token);
+  } else {
+    res.status(400).json("invalid");
+  }
 };
 //DELETE USER WHERE ID=ID
 module.exports.deleteUser = async (req, res) => {
-  const id = req.params.id;
+  const id = req.user.id;
   User.findByIdAndRemove(id)
     .then((data) => {
       if (!data) {
