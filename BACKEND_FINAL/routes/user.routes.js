@@ -21,9 +21,4 @@ router.post("/signin", authController.sortData,authController.validPass, userCon
 router.get("/logged", authController.verifyToken, userController.accept);
 //DELETE,DELETE
 router.delete("/", authController.verifyToken, userController.deleteUser);
-//PUT,UPDATE
-router.put(
-  "/update/:id",
-  userController.updateUser
-);
 module.exports = router;

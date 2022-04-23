@@ -24,5 +24,7 @@ app.use("/api/user", usersRouter);
 const workoutRouter = require("./routes/workout.routes");
 app.use("/api/workout", workoutRouter);
 //SERVER LISTENING ON THE PORT
-server.listen(80, "10.65.199.137", () => console.log(`Server has started.`));
+server.listen(80, "100.81.96.73", () => console.log(`Server has started.`));
 module.exports = server;
+
+

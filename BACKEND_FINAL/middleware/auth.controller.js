@@ -33,12 +33,16 @@ module.exports.validPass = async (req, res, next) => {
     username: req.body.username,
   })
     .then(async (user) => {
-      try {
+      
         isPasswordValid = await bcrypt.compare(pass, user.password);
-        next();
-      } catch (error) {
-        res.status(500).send;
-      }
+        if(isPasswordValid){
+          next();
+        }
+        else{
+          return res.status(401).send({ message: "Unauthorized!" });
+
+        }
+            
     })
     .catch((err) => res.status(404).json("error" + err));
 };

@@ -61,8 +61,6 @@ public class Fragment4 extends Fragment implements View.OnClickListener {
                 signOut();
             }
             case R.id.buttonDeleteAccount: {
-                Toast.makeText(App.getAppContext(), "Hello", Toast.LENGTH_SHORT).show();
-
                 if (rest.deleteRequest()) {
                     signOut();
                 }

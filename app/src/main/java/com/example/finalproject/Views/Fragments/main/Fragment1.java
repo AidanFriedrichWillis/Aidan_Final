@@ -74,8 +74,9 @@ public class Fragment1 extends Fragment  implements View.OnClickListener {
             for (int i = 0; i < User.getCurrentWorkout().getExerises().size(); i++) {
                 s += "Exersize: " + User.getCurrentWorkout().getExerises().get(i).getName() + " Reps:" + User.getCurrentWorkout().getExerises().get(i).getReps() + " Sets:" + User.getCurrentWorkout().getExerises().get(i).getSets() + "\n";
             }
-            exersizesTV.setText(s);
         }
+
+        exersizesTV.setText(s);
 
 
     }
@@ -106,6 +107,9 @@ public class Fragment1 extends Fragment  implements View.OnClickListener {
                     try{
                         if(rest.postRequest(new JSONObject(s))){
                             Toast.makeText(App.getAppContext(), rest.getResult(), Toast.LENGTH_SHORT).show();
+                            User.resetUser();
+                            exersizesTV.setText("");
+                            workoutnameET.setText("");
 
                         }
                         else {

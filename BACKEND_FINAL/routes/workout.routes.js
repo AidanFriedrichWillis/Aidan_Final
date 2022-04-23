@@ -15,16 +15,26 @@ WITH CRUD OPERATIONS: CREATE, READ, UPDATE AND DELETE
 */
 
 //POST,CREATE
-router.post("/", authController.sortData,authController.verifyToken,workoutController.create);
+router.post(
+  "/",
+  authController.sortData,
+  authController.verifyToken,
+  workoutController.create
+);
 //GET,READ
 router.get("/", authController.verifyToken, workoutController.findAll);
 //GET ONE, READ
 router.get("/:id", authController.verifyToken, workoutController.findOne);
-router.get("/where/search", authController.verifyToken,workoutController.findOneWhere);
-
-//GET ONE, READ
+//GET WHERE SEARCH
+router.get(
+  "/where/search",
+  authController.verifyToken,
+  workoutController.findOneWhere
+);
 //DELETE,DELETE
-router.delete("/:id",authController.verifyToken, workoutController.deleteUser);
-//PUT,UPDATE
-router.put("/update/:id", workoutController.updateUser);
+router.delete(
+  "/:id",
+  authController.verifyToken,
+  workoutController.deleteWorkout
+);
 module.exports = router;

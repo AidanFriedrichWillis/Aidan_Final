@@ -35,7 +35,7 @@ module.exports.signup = async (req, res) => {
 };
 
 module.exports.accept = async (req, res) => {
-  return res.status(200).json("ez");
+  return res.status(200).json("ok");
 };
 
 //POST SIGN IN AND RETURN TOKEN

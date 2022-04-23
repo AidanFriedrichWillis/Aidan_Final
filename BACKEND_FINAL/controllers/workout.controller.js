@@ -18,7 +18,7 @@ module.exports.findAll = async (req, res) => {
   if (workout) {
     return res.status(200).json(workout);
   } else {
-    res.status.status(404).json("no ");
+    res.status(404).json("Not Found");
   }
 };
 //READ ONE
@@ -31,7 +31,7 @@ module.exports.findOne = async (req, res) => {
 
     return res.status(200).json(workout);
   } else {
-    res.json("no ");
+    res.status(404).json("Not Found");
   }
 };
 
@@ -78,14 +78,12 @@ module.exports.create = async (req, res) => {
     .save()
     .then(() => res.status(201).json("Workout Saved!"))
     .catch((err) => {
-      res.status(400).json("Error: " + err);
+      res.status(400).json("Error: ");
     });
 };
-//POST SIGN IN AND RETURN TOKEN
-module.exports.signin = async (req, res) => {
-};
+
 //DELETE USER WHERE ID=ID
-module.exports.deleteUser = async (req, res) => {
+module.exports.deleteWorkout = async (req, res) => {
 
   const id = req.params.id;
   Workout.findByIdAndRemove(id)
@@ -105,8 +103,4 @@ module.exports.deleteUser = async (req, res) => {
         message: "Could not delete WORKOUT with id=" + id,
       });
     });
-};
-
-//UPDATE USER WHERE ID=ID
-module.exports.updateUser = async (req, res) => {
 };

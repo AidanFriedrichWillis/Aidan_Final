@@ -61,7 +61,7 @@ public class NetworkThread extends Thread{
     public void run(){
         try {
             String UTF8 = "UTF-8", iso = "iso-8859-1";
-            String urlSt = "http://10.65.199.137/api/";
+            String urlSt = "http://100.81.96.73/api/";
             URL url = new URL(urlSt + route);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod(this.requestType);

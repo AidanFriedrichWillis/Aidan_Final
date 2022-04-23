@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.finalproject.Application.App;
 import com.example.finalproject.Application.Homescreen;
+import com.example.finalproject.Expections.UserException;
 import com.example.finalproject.R;
 import com.example.finalproject.HttpServices.RESTFull_services_user;
 import com.example.finalproject.Application.Token;
@@ -18,6 +19,7 @@ import com.example.finalproject.Application.Token;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Signup extends AppCompatActivity {
 
@@ -107,6 +109,20 @@ public class Signup extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        try {
+            UserException.validate(postData);
+            sendData();
+        }catch (UserException userException){
+            Toast.makeText(App.getAppContext(), userException.toString(), Toast.LENGTH_SHORT).show();
+
+        }
+
+
+
+
+    }
+    private void sendData(){
         rest = new RESTFull_services_user("user");
         try {
             if(rest.postRequest(new JSONObject(postData))){
@@ -120,7 +136,5 @@ public class Signup extends AppCompatActivity {
             Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 
         }
-
-
     }
 }

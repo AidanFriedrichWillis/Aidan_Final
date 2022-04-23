@@ -7,6 +7,7 @@ import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static com.example.finalproject.R.string.BAD_LONG_String;
 import static org.junit.Assert.*;
 
 import androidx.test.core.app.ActivityScenario;
@@ -71,7 +72,7 @@ public class B_Test {
      */
     @Test
     public void SavingWorkoutFail_Test(){
-        onView(withId(R.id.workoutnameET)).perform(typeText(String.valueOf(R.string.BAD_LONG_String)));
+        onView(withId(R.id.workoutnameET)).perform(typeText("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"));
         onView(withId(R.id.finishworkoutBTN1)).perform(click());
         closeSoftKeyboard();
         onView(withId(R.id.addExersise1)).check(matches(isDisplayed()));

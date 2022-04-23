@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.example.finalproject.Application.App;
+import com.example.finalproject.Expections.UserException;
 import com.example.finalproject.R;
 import com.example.finalproject.HttpServices.RESTFull_services_user;
 import com.example.finalproject.Application.Token;
@@ -85,8 +87,21 @@ public class MainActivity extends AppCompatActivity {
             putdata.put("password",String.valueOf(passwordET.getText()));
 
         }catch(Exception e){
-
+            e.printStackTrace();
         }
+        try {
+            UserException.validate(putdata);
+            sendData();
+        }catch (UserException e){
+            Toast.makeText(App.getAppContext() , e.toString(), Toast.LENGTH_SHORT).show();
+        }
+
+
+
+
+    }
+
+    private void sendData(){
         RESTFull_services_user rest = new RESTFull_services_user("user/signin");
 
         try{
@@ -102,9 +117,6 @@ public class MainActivity extends AppCompatActivity {
         }catch(Exception e){
             Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
         }
-
-
-
     }
 
 
